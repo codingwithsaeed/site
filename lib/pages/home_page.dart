@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:site/l10n/l10n.dart';
+import 'package:site/pages/about_me_page.dart';
 import 'package:site/pages/responsive.dart';
+import 'package:site/provider/local_provider.dart';
 import 'package:site/utils/consts.dart';
+import 'package:site/widgets/flag_button.dart';
+import 'package:site/widgets/menu_item.dart';
 
 class HomePage extends StatelessWidget {
+  static const id = 'HomePage';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -25,34 +34,56 @@ class HomePage extends StatelessWidget {
           children: [
             const Spacer(),
             if (context.isMobile) showImageAndTitle(context),
-            const MenuItem(title: 'درباره من', icon: Icons.info_rounded),
-            const MenuItem(
-              title: 'رزومه',
-              icon: Icons.text_snippet_rounded,
+            MenuItem(
+              title: AppLocalizations.of(context)?.about ?? '',
+              icon: Icons.info_rounded,
+              onTap: () => Navigator.of(context).pushNamed(AboutMePage.id),
             ),
-            const MenuItem(
-              title: 'نمونه کارها',
-              icon: Icons.work_rounded,
-            ),
+            MenuItem(
+                title: AppLocalizations.of(context)?.resume ?? '',
+                icon: Icons.text_snippet_rounded),
+            MenuItem(
+                title: AppLocalizations.of(context)?.portfolio ?? '',
+                icon: Icons.work_rounded),
             const Spacer(),
-            if (context.isMobile) showContactRow(),
+            showContactRow(),
+            const SizedBox(height: 20),
+            languageRow(context),
+            const SizedBox(height: 20),
           ],
         ),
       );
 
-  Row showContactRow() {
+  Widget languageRow(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FlagButton(
+              onPressed: () =>
+                  Provider.of<LocalProvider>(context, listen: false).locale =
+                      L10n.all.first,
+              asset: 'assets/images/iran.png'),
+          const SizedBox(width: 10),
+          FlagButton(
+              onPressed: () =>
+                  Provider.of<LocalProvider>(context, listen: false).locale =
+                      L10n.all.last,
+              asset: 'assets/images/usa.png')
+        ],
+      );
+
+  Widget showContactRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(onPressed: () {}, icon: const Icon(Icons.telegram_rounded)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.whatsapp_rounded)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.gite_rounded)),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.inbox_sharp)),
+        SvgPicture.asset('assets/images/telegram.svg'),
+        SvgPicture.asset('assets/images/linkedin.svg'),
+        SvgPicture.asset('assets/images/instagram.svg'),
       ],
     );
   }
 
   Widget onTablet(BuildContext context) => onDesktop(context);
+
   Widget onDesktop(BuildContext context) => Row(
         children: [
           Expanded(
@@ -62,11 +93,7 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Spacer(),
                     showImageAndTitle(context),
-                    const Spacer(),
-                    showContactRow(),
-                    const SizedBox(height: 10),
                   ],
                 ),
               )),
@@ -86,21 +113,21 @@ class HomePage extends StatelessWidget {
           radius: context.isMobile ? 90 : 140,
         ),
         const SizedBox(height: 10),
-        Text('سعید احمدی',
+        Text(AppLocalizations.of(context)?.name ?? '',
             style: TextStyle(
               fontSize: context.isMobile ? 24 : 40,
               shadows: const [
                 Shadow(
-                  blurRadius: 10,
+                  blurRadius: 5,
                   color: Colors.white,
-                  offset: Offset(5, 5),
+                  offset: Offset(0, 0),
                 ),
               ],
               fontWeight: FontWeight.w700,
               color: const Color.fromARGB(255, 42, 2, 49),
             )),
         const SizedBox(height: 10),
-        Text('توسعه دهنده نرم افزار (فلاتر)',
+        Text(AppLocalizations.of(context)?.title ?? '',
             style: TextStyle(
               fontSize: context.isMobile ? 20 : 30,
               shadows: const [
@@ -110,30 +137,10 @@ class HomePage extends StatelessWidget {
                   offset: Offset(5, 5),
                 ),
               ],
-              fontWeight: FontWeight.w600,
               color: Colors.purple.shade50,
             )),
         const SizedBox(height: 10),
       ],
-    );
-  }
-}
-
-class MenuItem extends StatelessWidget {
-  final String title;
-  final IconData? icon;
-  const MenuItem({Key? key, required this.title, this.icon}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: ListTile(
-        title: Text(title),
-        leading: Icon(icon),
-      ),
     );
   }
 }

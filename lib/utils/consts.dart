@@ -5,7 +5,7 @@ const gradientBox = BoxDecoration(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        Color.fromARGB(255, 215, 182, 221),
-        Color.fromARGB(255, 24, 3, 51),
+        Color.fromARGB(255, 210, 184, 214),
+        Color.fromARGB(255, 18, 1, 41),
       ]),
 );

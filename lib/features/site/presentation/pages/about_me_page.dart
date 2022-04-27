@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:site/pages/responsive.dart';
-import 'package:site/utils/consts.dart';
+import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/utils/consts.dart';
+
 
 class AboutMePage extends StatelessWidget {
   static const id = 'AboutMePage';

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:site/pages/about_me_page.dart';
-import 'package:site/pages/home_page.dart';
-import 'package:site/provider/local_provider.dart';
-import 'package:site/utils/utils.dart';
-
-import 'l10n/l10n.dart';
+import 'package:site/features/site/presentation/l10n/l10n.dart';
+import 'package:site/features/site/presentation/pages/about_me_page.dart';
+import 'package:site/features/site/presentation/pages/home_page.dart';
+import 'package:site/features/site/presentation/pages/resume_page.dart';
+import 'package:site/features/site/presentation/provider/local_provider.dart';
+import 'package:site/features/site/utils/utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -40,6 +39,7 @@ class MyApp extends StatelessWidget {
           routes: {
             HomePage.id: (context) => const HomePage(),
             AboutMePage.id: (context) => const AboutMePage(),
+            ResumePage.id: (context) => const ResumePage(),
           },
           initialRoute: HomePage.id,
         );

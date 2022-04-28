@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:site/core/error/failure.dart';
+import 'package:site/core/network/api_param.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/domain/repositories/user_repository.dart';
 
@@ -8,6 +9,6 @@ class GetInfoUsecase {
 
   const GetInfoUsecase(this._repository);
 
-  Future<Either<Failure, User>> call(String id, String locale) =>
-      _repository.getUserInfo(id, locale);
+  Future<Either<Failure, User>> call(ApiParam param) =>
+      _repository.getUserInfo(param);
 }

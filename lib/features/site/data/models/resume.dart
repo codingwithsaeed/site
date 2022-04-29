@@ -19,7 +19,7 @@ class Resume with _$Resume {
     ContactInfo contact,
     PersonalInfo personal,
     WorkInfo work,
-    SkillWrapper skill,
+    SkillWrapper skills,
     List<SocialNetwork> socialNetworks,
     List<Education> education,
     List<Company> companies,

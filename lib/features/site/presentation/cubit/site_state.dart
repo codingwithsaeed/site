@@ -1,10 +1,9 @@
 part of 'site_cubit.dart';
 
-// abstract class SiteState extends Equatable {
-//   const SiteState();
-
-//   @override
-//   List<Object> get props => [];
-// }
-
-// class SiteInitial extends SiteState {}
+@freezed
+class SiteState with _$SiteState {
+  const factory SiteState.initial() = Initial;
+  const factory SiteState.loading() = Loading;
+  const factory SiteState.loaded(User user) = Loaded;
+  const factory SiteState.error(String message) = Error;
+}

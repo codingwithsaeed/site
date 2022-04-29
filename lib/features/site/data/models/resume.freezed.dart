@@ -27,7 +27,7 @@ class _$ResumeTearOff {
       ContactInfo contact,
       PersonalInfo personal,
       WorkInfo work,
-      SkillWrapper skill,
+      SkillWrapper skills,
       List<SocialNetwork> socialNetworks,
       List<Education> education,
       List<Company> companies,
@@ -37,7 +37,7 @@ class _$ResumeTearOff {
       contact,
       personal,
       work,
-      skill,
+      skills,
       socialNetworks,
       education,
       companies,
@@ -59,7 +59,7 @@ mixin _$Resume {
   ContactInfo get contact => throw _privateConstructorUsedError;
   PersonalInfo get personal => throw _privateConstructorUsedError;
   WorkInfo get work => throw _privateConstructorUsedError;
-  SkillWrapper get skill => throw _privateConstructorUsedError;
+  SkillWrapper get skills => throw _privateConstructorUsedError;
   List<SocialNetwork> get socialNetworks => throw _privateConstructorUsedError;
   List<Education> get education => throw _privateConstructorUsedError;
   List<Company> get companies => throw _privateConstructorUsedError;
@@ -79,7 +79,7 @@ abstract class $ResumeCopyWith<$Res> {
       ContactInfo contact,
       PersonalInfo personal,
       WorkInfo work,
-      SkillWrapper skill,
+      SkillWrapper skills,
       List<SocialNetwork> socialNetworks,
       List<Education> education,
       List<Company> companies,
@@ -89,7 +89,7 @@ abstract class $ResumeCopyWith<$Res> {
   $ContactInfoCopyWith<$Res> get contact;
   $PersonalInfoCopyWith<$Res> get personal;
   $WorkInfoCopyWith<$Res> get work;
-  $SkillWrapperCopyWith<$Res> get skill;
+  $SkillWrapperCopyWith<$Res> get skills;
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$ResumeCopyWithImpl<$Res> implements $ResumeCopyWith<$Res> {
     Object? contact = freezed,
     Object? personal = freezed,
     Object? work = freezed,
-    Object? skill = freezed,
+    Object? skills = freezed,
     Object? socialNetworks = freezed,
     Object? education = freezed,
     Object? companies = freezed,
@@ -129,9 +129,9 @@ class _$ResumeCopyWithImpl<$Res> implements $ResumeCopyWith<$Res> {
           ? _value.work
           : work // ignore: cast_nullable_to_non_nullable
               as WorkInfo,
-      skill: skill == freezed
-          ? _value.skill
-          : skill // ignore: cast_nullable_to_non_nullable
+      skills: skills == freezed
+          ? _value.skills
+          : skills // ignore: cast_nullable_to_non_nullable
               as SkillWrapper,
       socialNetworks: socialNetworks == freezed
           ? _value.socialNetworks
@@ -181,9 +181,9 @@ class _$ResumeCopyWithImpl<$Res> implements $ResumeCopyWith<$Res> {
   }
 
   @override
-  $SkillWrapperCopyWith<$Res> get skill {
-    return $SkillWrapperCopyWith<$Res>(_value.skill, (value) {
-      return _then(_value.copyWith(skill: value));
+  $SkillWrapperCopyWith<$Res> get skills {
+    return $SkillWrapperCopyWith<$Res>(_value.skills, (value) {
+      return _then(_value.copyWith(skills: value));
     });
   }
 }
@@ -198,7 +198,7 @@ abstract class _$ResumeCopyWith<$Res> implements $ResumeCopyWith<$Res> {
       ContactInfo contact,
       PersonalInfo personal,
       WorkInfo work,
-      SkillWrapper skill,
+      SkillWrapper skills,
       List<SocialNetwork> socialNetworks,
       List<Education> education,
       List<Company> companies,
@@ -213,7 +213,7 @@ abstract class _$ResumeCopyWith<$Res> implements $ResumeCopyWith<$Res> {
   @override
   $WorkInfoCopyWith<$Res> get work;
   @override
-  $SkillWrapperCopyWith<$Res> get skill;
+  $SkillWrapperCopyWith<$Res> get skills;
 }
 
 /// @nodoc
@@ -231,7 +231,7 @@ class __$ResumeCopyWithImpl<$Res> extends _$ResumeCopyWithImpl<$Res>
     Object? contact = freezed,
     Object? personal = freezed,
     Object? work = freezed,
-    Object? skill = freezed,
+    Object? skills = freezed,
     Object? socialNetworks = freezed,
     Object? education = freezed,
     Object? companies = freezed,
@@ -254,9 +254,9 @@ class __$ResumeCopyWithImpl<$Res> extends _$ResumeCopyWithImpl<$Res>
           ? _value.work
           : work // ignore: cast_nullable_to_non_nullable
               as WorkInfo,
-      skill == freezed
-          ? _value.skill
-          : skill // ignore: cast_nullable_to_non_nullable
+      skills == freezed
+          ? _value.skills
+          : skills // ignore: cast_nullable_to_non_nullable
               as SkillWrapper,
       socialNetworks == freezed
           ? _value.socialNetworks
@@ -286,7 +286,7 @@ class _$_Resume implements _Resume {
       this.contact,
       this.personal,
       this.work,
-      this.skill,
+      this.skills,
       this.socialNetworks,
       this.education,
       this.companies,
@@ -304,7 +304,7 @@ class _$_Resume implements _Resume {
   @override
   final WorkInfo work;
   @override
-  final SkillWrapper skill;
+  final SkillWrapper skills;
   @override
   final List<SocialNetwork> socialNetworks;
   @override
@@ -316,7 +316,7 @@ class _$_Resume implements _Resume {
 
   @override
   String toString() {
-    return 'Resume(profile: $profile, contact: $contact, personal: $personal, work: $work, skill: $skill, socialNetworks: $socialNetworks, education: $education, companies: $companies, projects: $projects)';
+    return 'Resume(profile: $profile, contact: $contact, personal: $personal, work: $work, skills: $skills, socialNetworks: $socialNetworks, education: $education, companies: $companies, projects: $projects)';
   }
 
   @override
@@ -328,7 +328,7 @@ class _$_Resume implements _Resume {
             const DeepCollectionEquality().equals(other.contact, contact) &&
             const DeepCollectionEquality().equals(other.personal, personal) &&
             const DeepCollectionEquality().equals(other.work, work) &&
-            const DeepCollectionEquality().equals(other.skill, skill) &&
+            const DeepCollectionEquality().equals(other.skills, skills) &&
             const DeepCollectionEquality()
                 .equals(other.socialNetworks, socialNetworks) &&
             const DeepCollectionEquality().equals(other.education, education) &&
@@ -343,7 +343,7 @@ class _$_Resume implements _Resume {
       const DeepCollectionEquality().hash(contact),
       const DeepCollectionEquality().hash(personal),
       const DeepCollectionEquality().hash(work),
-      const DeepCollectionEquality().hash(skill),
+      const DeepCollectionEquality().hash(skills),
       const DeepCollectionEquality().hash(socialNetworks),
       const DeepCollectionEquality().hash(education),
       const DeepCollectionEquality().hash(companies),
@@ -366,7 +366,7 @@ abstract class _Resume implements Resume {
       ContactInfo contact,
       PersonalInfo personal,
       WorkInfo work,
-      SkillWrapper skill,
+      SkillWrapper skills,
       List<SocialNetwork> socialNetworks,
       List<Education> education,
       List<Company> companies,
@@ -383,7 +383,7 @@ abstract class _Resume implements Resume {
   @override
   WorkInfo get work;
   @override
-  SkillWrapper get skill;
+  SkillWrapper get skills;
   @override
   List<SocialNetwork> get socialNetworks;
   @override

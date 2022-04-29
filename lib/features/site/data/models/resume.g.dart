@@ -11,7 +11,7 @@ _$_Resume _$$_ResumeFromJson(Map<String, dynamic> json) => _$_Resume(
       ContactInfo.fromJson(json['contact'] as Map<String, dynamic>),
       PersonalInfo.fromJson(json['personal'] as Map<String, dynamic>),
       WorkInfo.fromJson(json['work'] as Map<String, dynamic>),
-      SkillWrapper.fromJson(json['skill'] as Map<String, dynamic>),
+      SkillWrapper.fromJson(json['skills'] as Map<String, dynamic>),
       (json['socialNetworks'] as List<dynamic>)
           .map((e) => SocialNetwork.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_ResumeToJson(_$_Resume instance) => <String, dynamic>{
       'contact': instance.contact,
       'personal': instance.personal,
       'work': instance.work,
-      'skill': instance.skill,
+      'skills': instance.skills,
       'socialNetworks': instance.socialNetworks,
       'education': instance.education,
       'companies': instance.companies,

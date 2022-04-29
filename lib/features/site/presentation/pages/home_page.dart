@@ -1,7 +1,15 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:site/di/injection.dart';
+import 'package:site/features/site/domain/entities/user.dart';
+import 'package:site/features/site/presentation/cubit/site_cubit.dart';
 import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/about_me_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
@@ -9,6 +17,7 @@ import 'package:site/features/site/presentation/provider/local_provider.dart';
 import 'package:site/features/site/presentation/widgets/flag_button.dart';
 import 'package:site/features/site/presentation/widgets/menu_item.dart';
 import 'package:site/features/site/utils/consts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   static const id = 'HomePage';
@@ -17,15 +26,48 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Responsive(
-        mobile: onMobile(context),
-        tablet: onTablet(context),
-        desktop: onDesktop(context),
-      ),
+        body: BlocProvider(
+            create: (context) => getIt<SiteCubit>(),
+            child: Stack(
+              children: [
+                Consumer<LocalProvider>(builder: (context, provider, child) {
+                  context
+                      .read<SiteCubit>()
+                      .getUserInfo(provider.locale.toString());
+                  return const Text('');
+                }),
+                BlocConsumer<SiteCubit, SiteState>(
+                  listener: (context, state) {
+                    if (state is Error) {
+                      log('Error: ${state.message}');
+                    }
+                    if (state is Loaded) {
+                      log('user: ${state.user.toString()}');
+                    }
+                  },
+                  builder: (context, state) {
+                    return state.when(
+                        initial: () => const Center(),
+                        loading: () => showLoading(),
+                        loaded: (user) => mainBody(context, user),
+                        error: (error) => Center(
+                              child: Text(error),
+                            ));
+                  },
+                ),
+              ],
+            )));
+  }
+
+  Widget mainBody(BuildContext context, User user) {
+    return Responsive(
+      mobile: onMobile(context, user),
+      tablet: onTablet(context, user),
+      desktop: onDesktop(context, user),
     );
   }
 
-  Widget onMobile(BuildContext context) => Container(
+  Widget onMobile(BuildContext context, User user) => Container(
         padding: const EdgeInsets.all(8.0),
         decoration: context.isMobile ? gradientBox : null,
         child: Column(
@@ -33,7 +75,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Spacer(),
-            if (context.isMobile) showImageAndTitle(context),
+            if (context.isMobile) showImageAndTitle(context, user),
             MenuItem(
               title: AppLocalizations.of(context)?.about ?? '',
               icon: Icons.info_rounded,
@@ -46,7 +88,7 @@ class HomePage extends StatelessWidget {
                 title: AppLocalizations.of(context)?.portfolio ?? '',
                 icon: Icons.work_rounded),
             const Spacer(),
-            showContactRow(),
+            showContactRow(user),
             const SizedBox(height: 20),
             languageRow(context),
             const SizedBox(height: 20),
@@ -58,33 +100,56 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FlagButton(
-              onPressed: () =>
+              onPressed: () {
+                if (Provider.of<LocalProvider>(context, listen: false)
+                        .locale
+                        .toString() !=
+                    'fa')
                   Provider.of<LocalProvider>(context, listen: false).locale =
-                      L10n.all.first,
+                      L10n.all.first;
+              },
               asset: 'assets/images/iran.png'),
           const SizedBox(width: 10),
           FlagButton(
-              onPressed: () =>
+              onPressed: () {
+                if (Provider.of<LocalProvider>(
+                      context,
+                      listen: false,
+                    ).locale.toString() !=
+                    'en')
                   Provider.of<LocalProvider>(context, listen: false).locale =
-                      L10n.all.last,
+                      L10n.all.last;
+              },
               asset: 'assets/images/usa.png')
         ],
       );
 
-  Widget showContactRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SvgPicture.asset('assets/images/telegram.svg'),
-        SvgPicture.asset('assets/images/linkedin.svg'),
-        SvgPicture.asset('assets/images/instagram.svg'),
-      ],
+  Widget showContactRow(User user) {
+    return SizedBox(
+      height: 100,
+      child: Center(
+        child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return SizedBox(
+              width: 64,
+              height: 64,
+              child: IconButton(
+                  onPressed: () async => await launchUrl(
+                      Uri.parse(user.resume.socialNetworks[index].link)),
+                  icon: Image.network(user.resume.socialNetworks[index].logo)),
+            );
+          },
+          itemCount: user.resume.socialNetworks.length,
+        ),
+      ),
     );
   }
 
-  Widget onTablet(BuildContext context) => onDesktop(context);
+  Widget onTablet(BuildContext context, User user) => onDesktop(context, user);
 
-  Widget onDesktop(BuildContext context) => Row(
+  Widget onDesktop(BuildContext context, User user) => Row(
         children: [
           Expanded(
               flex: 3,
@@ -93,27 +158,26 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    showImageAndTitle(context),
+                    showImageAndTitle(context, user),
                   ],
                 ),
               )),
-          Expanded(flex: context.isTablet ? 2 : 1, child: onMobile(context))
+          Expanded(
+              flex: context.isTablet ? 2 : 1, child: onMobile(context, user))
         ],
       );
 
-  Widget showImageAndTitle(BuildContext context) {
+  Widget showImageAndTitle(BuildContext context, User user) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundImage: const AssetImage(
-            'assets/images/pic.jpg',
-          ),
+          backgroundImage: NetworkImage(user.person.picture),
           radius: context.isMobile ? 90 : 140,
         ),
         const SizedBox(height: 10),
-        Text(AppLocalizations.of(context)?.name ?? '',
+        Text(user.person.name,
             style: TextStyle(
               fontSize: context.isMobile ? 24 : 40,
               shadows: const [
@@ -127,7 +191,7 @@ class HomePage extends StatelessWidget {
               color: const Color.fromARGB(255, 42, 2, 49),
             )),
         const SizedBox(height: 10),
-        Text(AppLocalizations.of(context)?.title ?? '',
+        Text(user.person.title,
             style: TextStyle(
               fontSize: context.isMobile ? 20 : 30,
               shadows: const [
@@ -143,4 +207,10 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
+
+  Widget showLoading() => const Center(
+        child: CircularProgressIndicator(
+          color: Color.fromARGB(255, 42, 2, 49),
+        ),
+      );
 }

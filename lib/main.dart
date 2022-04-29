@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:site/di/injection.dart';
 import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/about_me_page.dart';
 import 'package:site/features/site/presentation/pages/home_page.dart';
@@ -9,7 +10,9 @@ import 'package:site/features/site/presentation/pages/resume_page.dart';
 import 'package:site/features/site/presentation/provider/local_provider.dart';
 import 'package:site/features/site/utils/utils.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(const MyApp());
 }
 

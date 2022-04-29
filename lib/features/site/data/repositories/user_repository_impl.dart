@@ -1,5 +1,6 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
+import 'package:injectable/injectable.dart';
 import 'package:site/core/error/exception.dart';
 import 'package:site/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -9,6 +10,7 @@ import 'package:site/features/site/data/datasources/user_remote_source.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/domain/repositories/user_repository.dart';
 
+@Injectable(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteSource _userRemoteSource;
   final NetworkInfo _networkInfo;

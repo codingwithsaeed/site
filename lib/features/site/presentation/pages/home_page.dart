@@ -5,7 +5,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:site/di/injection.dart';
 import 'package:site/features/site/domain/entities/user.dart';
@@ -13,6 +12,7 @@ import 'package:site/features/site/presentation/cubit/site_cubit.dart';
 import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/about_me_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/presentation/pages/resume_page.dart';
 import 'package:site/features/site/presentation/provider/local_provider.dart';
 import 'package:site/features/site/presentation/widgets/flag_button.dart';
 import 'package:site/features/site/presentation/widgets/menu_item.dart';
@@ -82,8 +82,11 @@ class HomePage extends StatelessWidget {
               onTap: () => Navigator.of(context).pushNamed(AboutMePage.id),
             ),
             MenuItem(
-                title: AppLocalizations.of(context)?.resume ?? '',
-                icon: Icons.text_snippet_rounded),
+              title: AppLocalizations.of(context)?.resume ?? '',
+              icon: Icons.text_snippet_rounded,
+              onTap: () => Navigator.of(context)
+                  .pushNamed(ResumePage.id, arguments: user),
+            ),
             MenuItem(
                 title: AppLocalizations.of(context)?.portfolio ?? '',
                 icon: Icons.work_rounded),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
@@ -29,7 +28,6 @@ class ApiProviderImpl implements ApiProvider {
       final _response = await _client
           .post(url, body: params)
           .timeout(const Duration(seconds: 5));
-      print(_response.body);    
       if (_response.statusCode == 200) return _response;
       throw ServerException(message: 'خطا در دریافت اطلاعات از سرور');
     } on TimeoutException {

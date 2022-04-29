@@ -5,5 +5,16 @@
     "about": "About me",
     "resume": "Resume",
     "portfolio": "Portfolio",
+    "contact": "Contact Info",
+    "profile": "About",
+    "skills": "Skills",
+    "companies": "Professional Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "languages": "Languages",
+    "prog": "Programming Languages",
+    "tech": "Technical Skills",
+    "email": "email",
+    "phone": "phone",
     "about_text": "I am Mohammad Ahmadi. I am 25 years old and I studied computer engineering at university. Right now my job is Android and Flutter programming. My friends and acquaintances call me Saeed and I am happy that you use the same name in our communication."
 }

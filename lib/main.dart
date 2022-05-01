@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       create: (_) => LocalProvider(L10n.all.first),
       builder: (context, child) {
         return MaterialApp(
-          title: 'CodingWithSaeed',
+          title: 'Saeed Ahmadi',
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,

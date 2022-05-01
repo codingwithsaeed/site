@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
       mobile: onMobile(context, user),
       tablet: context.width <= 600
           ? onMobile(context, user)
-          : onTablet(context, user),
+          : onDesktop(context, user),
       desktop: onDesktop(context, user),
     );
   }
@@ -86,7 +86,8 @@ class HomePage extends StatelessWidget {
             MenuItem(
               title: AppLocalizations.of(context)!.about,
               icon: Icons.info_rounded,
-              onTap: () => Navigator.of(context).pushNamed(AboutMePage.id),
+              onTap: () => Navigator.of(context)
+                  .pushNamed(AboutMePage.id, arguments: user),
             ),
             MenuItem(
               title: AppLocalizations.of(context)!.resume,
@@ -159,8 +160,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget onTablet(BuildContext context, User user) => onDesktop(context, user);
 
   Widget onDesktop(BuildContext context, User user) => Row(
         children: [

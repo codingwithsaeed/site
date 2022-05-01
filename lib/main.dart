@@ -48,10 +48,15 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             HomePage.id: (context) => const HomePage(),
-            AboutMePage.id: (context) => const AboutMePage(),
           },
           onGenerateRoute: (settings) {
-            if (settings.name == ResumePage.id) {
+            if (settings.name == AboutMePage.id) {
+              return MaterialPageRoute(
+                builder: (context) => AboutMePage(
+                  user: settings.arguments as User,
+                ),
+              );
+            } else if (settings.name == ResumePage.id) {
               return MaterialPageRoute(
                 builder: (context) => ResumePage(
                   user: settings.arguments as User,

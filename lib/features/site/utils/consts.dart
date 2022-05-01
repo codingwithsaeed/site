@@ -45,3 +45,10 @@ const mobileTextBold = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.bold,
 );
+
+const roundedRectangleBorder = RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    bottomLeft: Radius.circular(30),
+    bottomRight: Radius.circular(30),
+  ),
+);

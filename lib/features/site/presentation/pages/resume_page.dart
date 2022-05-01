@@ -7,6 +7,7 @@ import 'package:site/features/site/presentation/widgets/resume/education_widget.
 import 'package:site/features/site/presentation/widgets/resume/project_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
 import 'package:site/features/site/presentation/widgets/resume/skill_widget.dart';
+import 'package:site/features/site/utils/consts.dart';
 
 class ResumePage extends StatelessWidget {
   static const id = 'ResumePage';
@@ -17,28 +18,17 @@ class ResumePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 210, 184, 214),
+        backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)?.resume ?? ''),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
-          ),
+          title: Text(AppLocalizations.of(context)!.resume),
+          shape: roundedRectangleBorder,
         ),
         body: Responsive(
           mobile: onMobileOrTablet(
-            context,
-            EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width / 30),
-          ),
+              context, EdgeInsets.symmetric(horizontal: context.width / 30)),
           tablet: onMobileOrTablet(
-            context,
-            EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width / 10),
-          ),
+              context, EdgeInsets.symmetric(horizontal: context.width / 10)),
           desktop: onDesktop(context),
         ));
   }
@@ -49,19 +39,12 @@ class ResumePage extends StatelessWidget {
         Expanded(
             flex: 2,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                showImageAndTitle(context),
-              ],
-            )),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [showImageAndTitle(context)])),
         Expanded(
             flex: 3,
             child: onMobileOrTablet(
-              context,
-              EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width / 15,
-              ),
-            ))
+                context, EdgeInsets.symmetric(horizontal: context.width / 15)))
       ],
     );
   }
@@ -118,7 +101,7 @@ class ResumePage extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: const Color.fromARGB(255, 42, 2, 49),
             )),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Text(user.person.title,
             style: TextStyle(
               fontSize: context.isDesktop
@@ -129,11 +112,10 @@ class ResumePage extends StatelessWidget {
               shadows: const [
                 Shadow(
                   blurRadius: 10,
-                  color: Colors.black,
+                  color: Colors.white,
                   offset: Offset(5, 5),
                 ),
               ],
-              color: Colors.purple.shade50,
             )),
         const SizedBox(height: 10),
       ],
@@ -142,13 +124,13 @@ class ResumePage extends StatelessWidget {
 
   Widget showAbout(BuildContext context) => Column(
         children: [
-          SectionHeader(title: AppLocalizations.of(context)?.profile ?? ''),
+          SectionHeader(title: AppLocalizations.of(context)!.profile),
           const SizedBox(height: 5),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
               user.resume.profile.about,
-              style: const TextStyle(fontSize: 16, color: Colors.black87),
+              style: context.normalStyle,
             ),
           ),
         ],
@@ -157,16 +139,29 @@ class ResumePage extends StatelessWidget {
   Widget showContact(BuildContext context) {
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.contact ?? ''),
+        SectionHeader(title: AppLocalizations.of(context)!.contact),
         const SizedBox(height: 10),
         ListTile(
-          title: Text(user.resume.contact.email),
+          title: Text(user.resume.contact.email, style: context.normalStyle),
           leading: const Icon(Icons.email),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Divider(thickness: 1),
+        ),
         ListTile(
-          title: Text(user.resume.contact.phone),
+          title: Text(user.resume.contact.phone, style: context.normalStyle),
           leading: const Icon(Icons.phone_android),
         ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: Divider(thickness: 1),
+        ),
+        ListTile(
+          title: Text(user.resume.contact.address, style: context.normalStyle),
+          leading: const Icon(Icons.home_filled),
+        ),
+        const SizedBox(height: 10),
       ],
     );
   }
@@ -174,24 +169,18 @@ class ResumePage extends StatelessWidget {
   Widget showSkills(BuildContext context) {
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.skills ?? ''),
+        SectionHeader(title: AppLocalizations.of(context)!.skills),
         const SizedBox(height: 10),
         SkillWidget(
-            title: AppLocalizations.of(context)?.prog ?? '',
+            title: AppLocalizations.of(context)!.prog,
             skills: user.resume.skills.prog),
-        const Divider(
-          thickness: 1,
-        ),
         const SizedBox(height: 10),
         SkillWidget(
-            title: AppLocalizations.of(context)?.tech ?? '',
+            title: AppLocalizations.of(context)!.tech,
             skills: user.resume.skills.tech),
-        const Divider(
-          thickness: 1,
-        ),
         const SizedBox(height: 10),
         SkillWidget(
-            title: AppLocalizations.of(context)?.languages ?? '',
+            title: AppLocalizations.of(context)!.languages,
             skills: user.resume.skills.languages),
       ],
     );
@@ -200,7 +189,7 @@ class ResumePage extends StatelessWidget {
   Widget showEducation(BuildContext context) {
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.education ?? ''),
+        SectionHeader(title: AppLocalizations.of(context)!.education),
         const SizedBox(height: 10),
         EducationWidget(list: user.resume.education),
       ],
@@ -211,7 +200,7 @@ class ResumePage extends StatelessWidget {
     final list = user.resume.companies;
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.companies ?? ''),
+        SectionHeader(title: AppLocalizations.of(context)!.companies),
         const SizedBox(height: 10),
         CompanyWidget(list: list),
       ],
@@ -222,7 +211,7 @@ class ResumePage extends StatelessWidget {
     final list = user.resume.projects;
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.projects ?? ''),
+        SectionHeader(title: AppLocalizations.of(context)!.projects),
         const SizedBox(height: 10),
         ProjectWidget(list: list),
       ],

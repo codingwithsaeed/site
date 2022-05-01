@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:site/features/site/data/models/company.dart';
+import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CompanyWidget extends StatelessWidget {
@@ -24,26 +25,30 @@ class CompanyWidget extends StatelessWidget {
                   await launchUrl(Uri.parse(work.website));
                 }
               },
-              title: Text(work.title, style: const TextStyle(fontSize: 15)),
+              title: Text(work.title, style: context.normalStyle),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Text(work.name, style: context.smallStyle),
+                  Text(work.city, style: context.smallStyle),
                   Text(
-                    work.name,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  Text(
-                    work.city,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  Text(
-                    '${work.startMonth} ${work.startYear} - ${work.endMonth} ${work.endYear}',
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                      '${work.startMonth} ${work.startYear} - ${work.endMonth} ${work.endYear}',
+                      style: context.smallStyle),
                 ],
               ),
               leading: const Icon(Icons.work),
             ),
+            if (index != list.length - 1)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: const [
+                    Divider(
+                      thickness: 1,
+                    ),
+                  ],
+                ),
+              ),
           ],
         );
       },

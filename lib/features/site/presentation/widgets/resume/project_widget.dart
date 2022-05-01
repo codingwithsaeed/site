@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:site/features/site/data/models/project.dart';
+import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectWidget extends StatelessWidget {
@@ -24,22 +25,29 @@ class ProjectWidget extends StatelessWidget {
                   await launchUrl(Uri.parse(project.link));
                 }
               },
-              title: Text(project.name, style: const TextStyle(fontSize: 15)),
+              title: Text(project.name, style: context.normalStyle),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  Text(project.description, style: context.smallStyle),
                   Text(
-                    project.description,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  Text(
-                    '${project.startMonth} ${project.startYear} - ${project.endMonth} ${project.endYear}',
-                    style: const TextStyle(fontSize: 14),
-                  ),
+                      '${project.startMonth} ${project.startYear} - ${project.endMonth} ${project.endYear}',
+                      style: context.smallStyle),
                 ],
               ),
               leading: const Icon(Icons.extension),
             ),
+            if (index != list.length - 1)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: const [
+                    Divider(
+                      thickness: 1,
+                    ),
+                  ],
+                ),
+              ),
           ],
         );
       },

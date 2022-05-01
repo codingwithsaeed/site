@@ -114,7 +114,6 @@ class ProjectPage extends StatelessWidget {
                   Divider(
                     thickness: 1,
                   ),
-                  SizedBox(height: 10),
                 ],
               ),
           ],

@@ -81,13 +81,21 @@ class PortfolioPage extends StatelessWidget {
   }
 
   Widget showImageAndTitle(BuildContext context) {
+    late ImageProvider imageProvider;
+    if (user.person.pictures.isNotEmpty) {
+      imageProvider = NetworkImage(user.person.pictures.length == 4
+          ? user.person.pictures.last
+          : user.person.pictures[0]);
+    } else {
+      imageProvider = const AssetImage('assets/images/pic.jpg');
+    }
     return Column(
       mainAxisAlignment:
           context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(user.person.picture),
+          backgroundImage: imageProvider,
           radius: context.isDesktop ? 140 : 90,
         ),
         const SizedBox(height: 10),

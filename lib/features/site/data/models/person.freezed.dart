@@ -22,12 +22,12 @@ Person _$PersonFromJson(Map<String, dynamic> json) {
 class _$PersonTearOff {
   const _$PersonTearOff();
 
-  _Person call(String name, String title, String about, String picture) {
+  _Person call(String name, String title, String about, List<String> pictures) {
     return _Person(
       name,
       title,
       about,
-      picture,
+      pictures,
     );
   }
 
@@ -44,7 +44,7 @@ mixin _$Person {
   String get name => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
-  String get picture => throw _privateConstructorUsedError;
+  List<String> get pictures => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +55,7 @@ mixin _$Person {
 abstract class $PersonCopyWith<$Res> {
   factory $PersonCopyWith(Person value, $Res Function(Person) then) =
       _$PersonCopyWithImpl<$Res>;
-  $Res call({String name, String title, String about, String picture});
+  $Res call({String name, String title, String about, List<String> pictures});
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$PersonCopyWithImpl<$Res> implements $PersonCopyWith<$Res> {
     Object? name = freezed,
     Object? title = freezed,
     Object? about = freezed,
-    Object? picture = freezed,
+    Object? pictures = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -86,10 +86,10 @@ class _$PersonCopyWithImpl<$Res> implements $PersonCopyWith<$Res> {
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
               as String,
-      picture: picture == freezed
-          ? _value.picture
-          : picture // ignore: cast_nullable_to_non_nullable
-              as String,
+      pictures: pictures == freezed
+          ? _value.pictures
+          : pictures // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -99,7 +99,7 @@ abstract class _$PersonCopyWith<$Res> implements $PersonCopyWith<$Res> {
   factory _$PersonCopyWith(_Person value, $Res Function(_Person) then) =
       __$PersonCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String title, String about, String picture});
+  $Res call({String name, String title, String about, List<String> pictures});
 }
 
 /// @nodoc
@@ -116,7 +116,7 @@ class __$PersonCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
     Object? name = freezed,
     Object? title = freezed,
     Object? about = freezed,
-    Object? picture = freezed,
+    Object? pictures = freezed,
   }) {
     return _then(_Person(
       name == freezed
@@ -131,10 +131,10 @@ class __$PersonCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
           ? _value.about
           : about // ignore: cast_nullable_to_non_nullable
               as String,
-      picture == freezed
-          ? _value.picture
-          : picture // ignore: cast_nullable_to_non_nullable
-              as String,
+      pictures == freezed
+          ? _value.pictures
+          : pictures // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -142,7 +142,7 @@ class __$PersonCopyWithImpl<$Res> extends _$PersonCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Person implements _Person {
-  const _$_Person(this.name, this.title, this.about, this.picture);
+  const _$_Person(this.name, this.title, this.about, this.pictures);
 
   factory _$_Person.fromJson(Map<String, dynamic> json) =>
       _$$_PersonFromJson(json);
@@ -154,11 +154,11 @@ class _$_Person implements _Person {
   @override
   final String about;
   @override
-  final String picture;
+  final List<String> pictures;
 
   @override
   String toString() {
-    return 'Person(name: $name, title: $title, about: $about, picture: $picture)';
+    return 'Person(name: $name, title: $title, about: $about, pictures: $pictures)';
   }
 
   @override
@@ -169,7 +169,7 @@ class _$_Person implements _Person {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.about, about) &&
-            const DeepCollectionEquality().equals(other.picture, picture));
+            const DeepCollectionEquality().equals(other.pictures, pictures));
   }
 
   @override
@@ -178,7 +178,7 @@ class _$_Person implements _Person {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(about),
-      const DeepCollectionEquality().hash(picture));
+      const DeepCollectionEquality().hash(pictures));
 
   @JsonKey(ignore: true)
   @override
@@ -193,7 +193,8 @@ class _$_Person implements _Person {
 
 abstract class _Person implements Person {
   const factory _Person(
-      String name, String title, String about, String picture) = _$_Person;
+          String name, String title, String about, List<String> pictures) =
+      _$_Person;
 
   factory _Person.fromJson(Map<String, dynamic> json) = _$_Person.fromJson;
 
@@ -204,7 +205,7 @@ abstract class _Person implements Person {
   @override
   String get about;
   @override
-  String get picture;
+  List<String> get pictures;
   @override
   @JsonKey(ignore: true)
   _$PersonCopyWith<_Person> get copyWith => throw _privateConstructorUsedError;

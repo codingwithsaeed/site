@@ -187,12 +187,17 @@ class HomePage extends StatelessWidget {
       );
 
   Widget showImageAndTitle(BuildContext context, User user) {
+    ImageProvider imageProvider;
+    if (user.person.pictures.isNotEmpty)
+      imageProvider = NetworkImage(user.person.pictures.first);
+    else
+      imageProvider = const AssetImage('assets/images/pic.jpg');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(user.person.picture),
+          backgroundImage: imageProvider,
           radius: context.isMobile
               ? 90
               : context.isTablet

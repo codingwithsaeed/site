@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
 import 'package:site/features/site/utils/consts.dart';
 
 class AboutMePage extends StatelessWidget {
@@ -44,11 +43,6 @@ class AboutMePage extends StatelessWidget {
           children: [
             const Spacer(),
             if (context.width <= 600) showImageAndTitle(context),
-            const SizedBox(height: 20),
-            SectionHeader(
-              title: AppLocalizations.of(context)!.whoiam,
-            ),
-            const SizedBox(height: 20),
             Text(user.person.about, style: context.normalStyle),
             const Spacer(),
           ],

@@ -5,6 +5,7 @@ import 'package:site/features/site/presentation/pages/project_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:site/features/site/presentation/widgets/portfolio_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
+import 'package:site/features/site/utils/consts.dart';
 
 class PortfolioPage extends StatelessWidget {
   static const id = 'PortfolioPage';
@@ -15,10 +16,10 @@ class PortfolioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 210, 184, 214),
+        backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)?.portfolio ?? ''),
+          title: Text(AppLocalizations.of(context)!.portfolio),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -28,15 +29,13 @@ class PortfolioPage extends StatelessWidget {
         ),
         body: Responsive(
           mobile: onMobileOrTablet(
-            context,
-            EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width / 30),
-          ),
+              context,
+              EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 30)),
           tablet: onMobileOrTablet(
-            context,
-            EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width / 10),
-          ),
+              context,
+              EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width / 10)),
           desktop: onDesktop(context),
         ));
   }
@@ -116,11 +115,10 @@ class PortfolioPage extends StatelessWidget {
               shadows: const [
                 Shadow(
                   blurRadius: 10,
-                  color: Colors.black,
+                  color: Colors.white,
                   offset: Offset(5, 5),
                 ),
               ],
-              color: Colors.purple.shade50,
             )),
         const SizedBox(height: 10),
       ],

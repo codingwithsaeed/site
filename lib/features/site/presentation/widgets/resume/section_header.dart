@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:site/features/site/presentation/pages/responsive.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -19,8 +20,7 @@ class SectionHeader extends StatelessWidget {
       child: Text(
         title,
         textAlign: TextAlign.center,
-        style: const TextStyle(
-            fontSize: 17, fontWeight: FontWeight.bold, color: Colors.white),
+        style: context.headerStyle.copyWith(color: Colors.white),
       ),
     );
   }

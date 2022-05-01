@@ -5,9 +5,13 @@ const gradientBox = BoxDecoration(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: [
-        Color.fromARGB(255, 210, 184, 214),
+        Color.fromARGB(255, 232, 224, 234),
         Color.fromARGB(255, 18, 1, 41),
       ]),
+);
+
+const webTextSmall = TextStyle(
+  fontSize: 18,
 );
 
 const webTextNormal = TextStyle(
@@ -18,10 +22,26 @@ const webTextBold = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const tabletTextSmall = TextStyle(
+  fontSize: 16,
+);
 const tabletTextNormal = TextStyle(
   fontSize: 17,
 );
 const tabletTextBold = TextStyle(
   fontSize: 17,
+  fontWeight: FontWeight.bold,
+);
+const backgroundColor = Color.fromARGB(255, 232, 224, 234);
+const primaryColor = Color.fromARGB(255, 18, 1, 41);
+
+const mobileTextSmall = TextStyle(
+  fontSize: 14,
+);
+const mobileTextNormal = TextStyle(
+  fontSize: 15,
+);
+const mobileTextBold = TextStyle(
+  fontSize: 15,
   fontWeight: FontWeight.bold,
 );

@@ -23,12 +23,12 @@ class _$PortfolioTearOff {
   const _$PortfolioTearOff();
 
   _Portfolio call(String title, String subtitle, String description,
-      List<String> pictures) {
+      List<PortfolioPortion> portions) {
     return _Portfolio(
       title,
       subtitle,
       description,
-      pictures,
+      portions,
     );
   }
 
@@ -45,7 +45,7 @@ mixin _$Portfolio {
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  List<String> get pictures => throw _privateConstructorUsedError;
+  List<PortfolioPortion> get portions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +61,7 @@ abstract class $PortfolioCopyWith<$Res> {
       {String title,
       String subtitle,
       String description,
-      List<String> pictures});
+      List<PortfolioPortion> portions});
 }
 
 /// @nodoc
@@ -77,7 +77,7 @@ class _$PortfolioCopyWithImpl<$Res> implements $PortfolioCopyWith<$Res> {
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? description = freezed,
-    Object? pictures = freezed,
+    Object? portions = freezed,
   }) {
     return _then(_value.copyWith(
       title: title == freezed
@@ -92,10 +92,10 @@ class _$PortfolioCopyWithImpl<$Res> implements $PortfolioCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      pictures: pictures == freezed
-          ? _value.pictures
-          : pictures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      portions: portions == freezed
+          ? _value.portions
+          : portions // ignore: cast_nullable_to_non_nullable
+              as List<PortfolioPortion>,
     ));
   }
 }
@@ -110,7 +110,7 @@ abstract class _$PortfolioCopyWith<$Res> implements $PortfolioCopyWith<$Res> {
       {String title,
       String subtitle,
       String description,
-      List<String> pictures});
+      List<PortfolioPortion> portions});
 }
 
 /// @nodoc
@@ -127,7 +127,7 @@ class __$PortfolioCopyWithImpl<$Res> extends _$PortfolioCopyWithImpl<$Res>
     Object? title = freezed,
     Object? subtitle = freezed,
     Object? description = freezed,
-    Object? pictures = freezed,
+    Object? portions = freezed,
   }) {
     return _then(_Portfolio(
       title == freezed
@@ -142,10 +142,10 @@ class __$PortfolioCopyWithImpl<$Res> extends _$PortfolioCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      pictures == freezed
-          ? _value.pictures
-          : pictures // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      portions == freezed
+          ? _value.portions
+          : portions // ignore: cast_nullable_to_non_nullable
+              as List<PortfolioPortion>,
     ));
   }
 }
@@ -154,7 +154,7 @@ class __$PortfolioCopyWithImpl<$Res> extends _$PortfolioCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Portfolio implements _Portfolio {
   const _$_Portfolio(
-      this.title, this.subtitle, this.description, this.pictures);
+      this.title, this.subtitle, this.description, this.portions);
 
   factory _$_Portfolio.fromJson(Map<String, dynamic> json) =>
       _$$_PortfolioFromJson(json);
@@ -166,11 +166,11 @@ class _$_Portfolio implements _Portfolio {
   @override
   final String description;
   @override
-  final List<String> pictures;
+  final List<PortfolioPortion> portions;
 
   @override
   String toString() {
-    return 'Portfolio(title: $title, subtitle: $subtitle, description: $description, pictures: $pictures)';
+    return 'Portfolio(title: $title, subtitle: $subtitle, description: $description, portions: $portions)';
   }
 
   @override
@@ -182,7 +182,7 @@ class _$_Portfolio implements _Portfolio {
             const DeepCollectionEquality().equals(other.subtitle, subtitle) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.pictures, pictures));
+            const DeepCollectionEquality().equals(other.portions, portions));
   }
 
   @override
@@ -191,7 +191,7 @@ class _$_Portfolio implements _Portfolio {
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(subtitle),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(pictures));
+      const DeepCollectionEquality().hash(portions));
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +206,7 @@ class _$_Portfolio implements _Portfolio {
 
 abstract class _Portfolio implements Portfolio {
   const factory _Portfolio(String title, String subtitle, String description,
-      List<String> pictures) = _$_Portfolio;
+      List<PortfolioPortion> portions) = _$_Portfolio;
 
   factory _Portfolio.fromJson(Map<String, dynamic> json) =
       _$_Portfolio.fromJson;
@@ -218,7 +218,7 @@ abstract class _Portfolio implements Portfolio {
   @override
   String get description;
   @override
-  List<String> get pictures;
+  List<PortfolioPortion> get portions;
   @override
   @JsonKey(ignore: true)
   _$PortfolioCopyWith<_Portfolio> get copyWith =>

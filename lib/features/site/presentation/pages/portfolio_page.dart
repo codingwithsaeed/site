@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/domain/entities/user.dart';
+import 'package:site/features/site/presentation/pages/project_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/resume/company_widget.dart';
-import 'package:site/features/site/presentation/widgets/resume/education_widget.dart';
-import 'package:site/features/site/presentation/widgets/resume/project_widget.dart';
+import 'package:site/features/site/presentation/widgets/portfolio_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
-import 'package:site/features/site/presentation/widgets/resume/skill_widget.dart';
 
-class ResumePage extends StatelessWidget {
-  static const id = 'ResumePage';
+class PortfolioPage extends StatelessWidget {
+  static const id = 'PortfolioPage';
   final User user;
 
-  const ResumePage({Key? key, required this.user}) : super(key: key);
+  const PortfolioPage({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class ResumePage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 210, 184, 214),
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)?.resume ?? ''),
+          title: Text(AppLocalizations.of(context)?.portfolio ?? ''),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -76,18 +74,9 @@ class ResumePage extends StatelessWidget {
             const SizedBox(height: 10),
             if (!context.isDesktop) showImageAndTitle(context),
             const SizedBox(height: 10),
-            showAbout(context),
+            showAndroidPortfolio(context),
             const SizedBox(height: 10),
-            showContact(context),
-            const SizedBox(height: 10),
-            showSkills(context),
-            const SizedBox(height: 10),
-            showEducation(context),
-            const SizedBox(height: 10),
-            showCompanies(context),
-            const SizedBox(height: 10),
-            showProjects(context),
-            const SizedBox(height: 10),
+            showFlutterPortfolio(context),
           ],
         ),
       ),
@@ -140,91 +129,34 @@ class ResumePage extends StatelessWidget {
     );
   }
 
-  Widget showAbout(BuildContext context) => Column(
-        children: [
-          SectionHeader(title: AppLocalizations.of(context)?.profile ?? ''),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              user.resume.profile.about,
-              style: const TextStyle(fontSize: 16, color: Colors.black87),
-            ),
+  Widget showAndroidPortfolio(BuildContext context) {
+    return Column(
+      children: [
+        SectionHeader(title: AppLocalizations.of(context)!.android),
+        PortfolioWidget(
+          list: user.portfolio.android,
+          onTap: (index) => Navigator.pushNamed(
+            context,
+            ProjectPage.id,
+            arguments: user.portfolio.android[index],
           ),
-        ],
-      );
-
-  Widget showContact(BuildContext context) {
-    return Column(
-      children: [
-        SectionHeader(title: AppLocalizations.of(context)?.contact ?? ''),
-        const SizedBox(height: 10),
-        ListTile(
-          title: Text(user.resume.contact.email),
-          leading: const Icon(Icons.email),
-        ),
-        ListTile(
-          title: Text(user.resume.contact.phone),
-          leading: const Icon(Icons.phone_android),
         ),
       ],
     );
   }
 
-  Widget showSkills(BuildContext context) {
+  Widget showFlutterPortfolio(BuildContext context) {
     return Column(
       children: [
-        SectionHeader(title: AppLocalizations.of(context)?.skills ?? ''),
-        const SizedBox(height: 10),
-        SkillWidget(
-            title: AppLocalizations.of(context)?.prog ?? '',
-            skills: user.resume.skills.prog),
-        const Divider(
-          thickness: 1,
+        SectionHeader(title: AppLocalizations.of(context)!.flutter),
+        PortfolioWidget(
+          list: user.portfolio.flutter,
+          onTap: (index) => Navigator.pushNamed(
+            context,
+            ProjectPage.id,
+            arguments: user.portfolio.flutter[index],
+          ),
         ),
-        const SizedBox(height: 10),
-        SkillWidget(
-            title: AppLocalizations.of(context)?.tech ?? '',
-            skills: user.resume.skills.tech),
-        const Divider(
-          thickness: 1,
-        ),
-        const SizedBox(height: 10),
-        SkillWidget(
-            title: AppLocalizations.of(context)?.languages ?? '',
-            skills: user.resume.skills.languages),
-      ],
-    );
-  }
-
-  Widget showEducation(BuildContext context) {
-    return Column(
-      children: [
-        SectionHeader(title: AppLocalizations.of(context)?.education ?? ''),
-        const SizedBox(height: 10),
-        EducationWidget(list: user.resume.education),
-      ],
-    );
-  }
-
-  Widget showCompanies(BuildContext context) {
-    final list = user.resume.companies;
-    return Column(
-      children: [
-        SectionHeader(title: AppLocalizations.of(context)?.companies ?? ''),
-        const SizedBox(height: 10),
-        CompanyWidget(list: list),
-      ],
-    );
-  }
-
-  Widget showProjects(BuildContext context) {
-    final list = user.resume.projects;
-    return Column(
-      children: [
-        SectionHeader(title: AppLocalizations.of(context)?.projects ?? ''),
-        const SizedBox(height: 10),
-        ProjectWidget(list: list),
       ],
     );
   }

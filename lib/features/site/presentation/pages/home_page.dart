@@ -11,6 +11,7 @@ import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/cubit/site_cubit.dart';
 import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/about_me_page.dart';
+import 'package:site/features/site/presentation/pages/portfolio_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:site/features/site/presentation/pages/resume_page.dart';
 import 'package:site/features/site/presentation/provider/local_provider.dart';
@@ -21,6 +22,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   static const id = 'HomePage';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -88,8 +90,11 @@ class HomePage extends StatelessWidget {
                   .pushNamed(ResumePage.id, arguments: user),
             ),
             MenuItem(
-                title: AppLocalizations.of(context)?.portfolio ?? '',
-                icon: Icons.work_rounded),
+              title: AppLocalizations.of(context)?.portfolio ?? '',
+              icon: Icons.work_rounded,
+              onTap: () => Navigator.of(context)
+                  .pushNamed(PortfolioPage.id, arguments: user),
+            ),
             const Spacer(),
             showContactRow(user),
             const SizedBox(height: 20),

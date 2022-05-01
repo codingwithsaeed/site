@@ -4,10 +4,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:site/di/injection.dart';
+import 'package:site/features/site/data/models/galley_model.dart';
+import 'package:site/features/site/data/models/portfolio.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/about_me_page.dart';
+import 'package:site/features/site/presentation/pages/gallery_page.dart';
 import 'package:site/features/site/presentation/pages/home_page.dart';
+import 'package:site/features/site/presentation/pages/portfolio_page.dart';
+import 'package:site/features/site/presentation/pages/project_page.dart';
 import 'package:site/features/site/presentation/pages/resume_page.dart';
 import 'package:site/features/site/presentation/provider/local_provider.dart';
 import 'package:site/features/site/utils/utils.dart';
@@ -52,18 +57,36 @@ class MyApp extends StatelessWidget {
                   user: settings.arguments as User,
                 ),
               );
+            } else if (settings.name == PortfolioPage.id) {
+              return MaterialPageRoute(
+                builder: (context) => PortfolioPage(
+                  user: settings.arguments as User,
+                ),
+              );
+            } else if (settings.name == ProjectPage.id) {
+              return MaterialPageRoute(
+                builder: (context) => ProjectPage(
+                  project: settings.arguments as Portfolio,
+                ),
+              );
+            } else if (settings.name == GalleryPage.id) {
+              return MaterialPageRoute(
+                builder: (context) => GalleryPage(
+                  model: settings.arguments as GalleryModel,
+                ),
+              );
             }
             return null;
           },
           initialRoute: HomePage.id,
           scrollBehavior: const MaterialScrollBehavior().copyWith(
-          dragDevices: {
-            PointerDeviceKind.mouse,
-            PointerDeviceKind.stylus,
-            PointerDeviceKind.touch,
-            PointerDeviceKind.unknown
-          },
-        ),
+            dragDevices: {
+              PointerDeviceKind.mouse,
+              PointerDeviceKind.stylus,
+              PointerDeviceKind.touch,
+              PointerDeviceKind.unknown
+            },
+          ),
         );
       },
     );

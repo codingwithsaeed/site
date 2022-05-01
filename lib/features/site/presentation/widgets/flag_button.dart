@@ -13,12 +13,9 @@ class FlagButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 30,
-      height: 30,
-      child: MaterialButton(
-          padding: const EdgeInsets.all(0),
-          onPressed: onPressed,
-          child: Image.asset(asset)),
+      width: 48,
+      height: 48,
+      child: IconButton(onPressed: onPressed, icon: Image.asset(asset)),
     );
   }
 }

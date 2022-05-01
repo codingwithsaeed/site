@@ -28,6 +28,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: backgroundColor,
         body: BlocProvider(
             create: (context) => getIt<SiteCubit>(),
             child: Stack(
@@ -64,42 +65,46 @@ class HomePage extends StatelessWidget {
   Widget mainBody(BuildContext context, User user) {
     return Responsive(
       mobile: onMobile(context, user),
-      tablet: onTablet(context, user),
+      tablet: context.width <= 600
+          ? onMobile(context, user)
+          : onTablet(context, user),
       desktop: onDesktop(context, user),
     );
   }
 
   Widget onMobile(BuildContext context, User user) => Container(
-        padding: const EdgeInsets.all(8.0),
-        decoration: context.isMobile ? gradientBox : null,
+        padding: EdgeInsets.symmetric(
+            horizontal: context.width <= 600 ? (context.width / 20) : 8,
+            vertical: 8),
+        decoration: context.width <= 600 ? mobileGradientBox : null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Spacer(),
-            if (context.isMobile) showImageAndTitle(context, user),
+            if (context.width <= 600) showImageAndTitle(context, user),
             MenuItem(
-              title: AppLocalizations.of(context)?.about ?? '',
+              title: AppLocalizations.of(context)!.about,
               icon: Icons.info_rounded,
               onTap: () => Navigator.of(context).pushNamed(AboutMePage.id),
             ),
             MenuItem(
-              title: AppLocalizations.of(context)?.resume ?? '',
+              title: AppLocalizations.of(context)!.resume,
               icon: Icons.text_snippet_rounded,
               onTap: () => Navigator.of(context)
                   .pushNamed(ResumePage.id, arguments: user),
             ),
             MenuItem(
-              title: AppLocalizations.of(context)?.portfolio ?? '',
+              title: AppLocalizations.of(context)!.portfolio,
               icon: Icons.work_rounded,
               onTap: () => Navigator.of(context)
                   .pushNamed(PortfolioPage.id, arguments: user),
             ),
             const Spacer(),
-            showContactRow(user),
+            if (context.width <= 600) showContactRow(user),
             const SizedBox(height: 20),
             languageRow(context),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
           ],
         ),
       );
@@ -134,15 +139,15 @@ class HomePage extends StatelessWidget {
 
   Widget showContactRow(User user) {
     return SizedBox(
-      height: 100,
+      height: 48,
       child: Center(
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return SizedBox(
-              width: 64,
-              height: 64,
+              width: 48,
+              height: 48,
               child: IconButton(
                   onPressed: () async => await launchUrl(
                       Uri.parse(user.resume.socialNetworks[index].link)),
@@ -160,18 +165,24 @@ class HomePage extends StatelessWidget {
   Widget onDesktop(BuildContext context, User user) => Row(
         children: [
           Expanded(
-              flex: 3,
+              flex: 5,
               child: Container(
-                decoration: gradientBox,
+                decoration:
+                    Provider.of<LocalProvider>(context).locale == L10n.all.first
+                        ? faGradientBox
+                        : enGradientBox,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Spacer(),
                     showImageAndTitle(context, user),
+                    const Spacer(),
+                    showContactRow(user),
+                    const SizedBox(height: 20),
                   ],
                 ),
               )),
           Expanded(
-              flex: context.isTablet ? 2 : 1, child: onMobile(context, user))
+              flex: context.isTablet ? 3 : 2, child: onMobile(context, user))
         ],
       );
 
@@ -182,26 +193,38 @@ class HomePage extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundImage: NetworkImage(user.person.picture),
-          radius: context.isMobile ? 90 : 140,
+          radius: context.isMobile
+              ? 90
+              : context.isTablet
+                  ? 120
+                  : 140,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Text(user.person.name,
             style: TextStyle(
-              fontSize: context.isMobile ? 24 : 40,
+              fontSize: context.isMobile
+                  ? 24
+                  : context.isTablet
+                      ? 36
+                      : 40,
               shadows: const [
                 Shadow(
                   blurRadius: 5,
-                  color: Colors.white,
+                  color: backgroundColor,
                   offset: Offset(0, 0),
                 ),
               ],
               fontWeight: FontWeight.w700,
-              color: const Color.fromARGB(255, 42, 2, 49),
+              color: primaryColor,
             )),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Text(user.person.title,
             style: TextStyle(
-              fontSize: context.isMobile ? 20 : 30,
+              fontSize: context.isMobile
+                  ? 20
+                  : context.isTablet
+                      ? 25
+                      : 30,
               shadows: const [
                 Shadow(
                   blurRadius: 10,
@@ -209,7 +232,7 @@ class HomePage extends StatelessWidget {
                   offset: Offset(5, 5),
                 ),
               ],
-              color: Colors.purple.shade50,
+              color: backgroundColor,
             )),
         const SizedBox(height: 10),
       ],
@@ -218,7 +241,7 @@ class HomePage extends StatelessWidget {
 
   Widget showLoading() => const Center(
         child: CircularProgressIndicator(
-          color: Color.fromARGB(255, 42, 2, 49),
+          color: primaryColor,
         ),
       );
 }

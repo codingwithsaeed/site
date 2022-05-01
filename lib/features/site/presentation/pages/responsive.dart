@@ -41,4 +41,6 @@ extension BetterContext on BuildContext {
   bool get isMobile => Responsive.isMobile(this);
   bool get isTablet => Responsive.isTablet(this);
   bool get isDesktop => Responsive.isDesktop(this);
+  double get width => MediaQuery.of(this).size.width;
+  double get height => MediaQuery.of(this).size.height;
 }

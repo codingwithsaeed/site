@@ -48,18 +48,16 @@ class PortfolioPage extends StatelessWidget {
             flex: 2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                showImageAndTitle(context),
-              ],
+              children: [showImageAndTitle(context)],
             )),
         Expanded(
-            flex: 3,
-            child: onMobileOrTablet(
+          flex: 3,
+          child: onMobileOrTablet(
               context,
               EdgeInsets.symmetric(
                 horizontal: MediaQuery.of(context).size.width / 15,
-              ),
-            ))
+              )),
+        )
       ],
     );
   }

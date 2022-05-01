@@ -123,18 +123,27 @@ class ProjectPage extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        //     crossAxisCount: 2, crossAxisSpacing: 2.0, mainAxisSpacing: 2.0),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              onTap: () => Navigator.pushNamed(context, GalleryPage.id,
-                  arguments: GalleryModel(
-                    pictures: portion.pictures,
-                    index: index,
-                    locale: portion.locale,
-                  )),
+              onTap: () {
+                showDialog(
+                    barrierColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        backgroundColor: Colors.transparent,
+                        child: GalleryPage(
+                            model: GalleryModel(
+                          pictures: portion.pictures,
+                          index: index,
+                          locale: portion.locale,
+                        )),
+                      );
+                    });
+              },
+              //   },
               child: Image.network(
                 portion.pictures[index],
                 fit: BoxFit.cover,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
 import 'package:site/features/site/presentation/widgets/resume/company_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/education_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/project_widget.dart';
@@ -21,7 +22,8 @@ class ResumePage extends StatelessWidget {
         backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)!.resume, style: context.headerStyle),
+          title: Text(AppLocalizations.of(context)!.resume,
+              style: context.headerStyle),
           shape: roundedRectangleBorder,
         ),
         body: Responsive(
@@ -85,21 +87,20 @@ class ResumePage extends StatelessWidget {
   }
 
   Widget showImageAndTitle(BuildContext context) {
-    late ImageProvider imageProvider;
+    late String source;
     if (user.person.pictures.isNotEmpty) {
-      imageProvider = NetworkImage(user.person.pictures.length == 4
+      source = user.person.pictures.length == 4
           ? user.person.pictures[2]
-          : user.person.pictures[0]);
-    } else {
-      imageProvider = const AssetImage('assets/images/pic.jpg');
+          : user.person.pictures.first;
     }
+
     return Column(
       mainAxisAlignment:
           context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: imageProvider,
+        CircleNetworkImage(
+          source: source,
           radius: context.isDesktop ? 140 : 90,
         ),
         const SizedBox(height: 10),

@@ -3,7 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/pages/project_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/portfolio_widget.dart';
+import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
+import 'package:site/features/site/presentation/widgets/portfolio/portfolio_widget.dart';
 import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
 import 'package:site/features/site/utils/consts.dart';
 
@@ -19,7 +20,8 @@ class PortfolioPage extends StatelessWidget {
         backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)!.portfolio, style: context.headerStyle),
+          title: Text(AppLocalizations.of(context)!.portfolio,
+              style: context.headerStyle),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -88,21 +90,20 @@ class PortfolioPage extends StatelessWidget {
   }
 
   Widget showImageAndTitle(BuildContext context) {
-    late ImageProvider imageProvider;
+    late String source;
     if (user.person.pictures.isNotEmpty) {
-      imageProvider = NetworkImage(user.person.pictures.length == 4
+      source = user.person.pictures.length == 4
           ? user.person.pictures.last
-          : user.person.pictures[0]);
-    } else {
-      imageProvider = const AssetImage('assets/images/pic.jpg');
+          : user.person.pictures.first;
     }
+
     return Column(
       mainAxisAlignment:
           context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: imageProvider,
+        CircleNetworkImage(
+          source: source,
           radius: context.isDesktop ? 140 : 90,
         ),
         const SizedBox(height: 10),

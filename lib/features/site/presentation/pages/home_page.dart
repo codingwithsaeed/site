@@ -1,5 +1,4 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -15,8 +14,9 @@ import 'package:site/features/site/presentation/pages/portfolio_page.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:site/features/site/presentation/pages/resume_page.dart';
 import 'package:site/features/site/presentation/provider/local_provider.dart';
-import 'package:site/features/site/presentation/widgets/flag_button.dart';
-import 'package:site/features/site/presentation/widgets/menu_item.dart';
+import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
+import 'package:site/features/site/presentation/widgets/home/flag_button.dart';
+import 'package:site/features/site/presentation/widgets/home/menu_item.dart';
 import 'package:site/features/site/utils/consts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,8 +50,8 @@ class HomePage extends StatelessWidget {
                   },
                   builder: (context, state) {
                     return state.when(
-                        initial: () => const Center(),
-                        loading: () => showLoading(),
+                        initial: () => loading,
+                        loading: () => loading,
                         loaded: (user) => mainBody(context, user),
                         error: (error) => Center(
                               child: Text(error),
@@ -187,17 +187,12 @@ class HomePage extends StatelessWidget {
       );
 
   Widget showImageAndTitle(BuildContext context, User user) {
-    ImageProvider imageProvider;
-    if (user.person.pictures.isNotEmpty)
-      imageProvider = NetworkImage(user.person.pictures.first);
-    else
-      imageProvider = const AssetImage('assets/images/pic.jpg');
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: imageProvider,
+        CircleNetworkImage(
+          source: user.person.pictures.first,
           radius: context.isMobile
               ? 90
               : context.isTablet
@@ -243,10 +238,4 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
-
-  Widget showLoading() => const Center(
-        child: CircularProgressIndicator(
-          color: primaryColor,
-        ),
-      );
 }

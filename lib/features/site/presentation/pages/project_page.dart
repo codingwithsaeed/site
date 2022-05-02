@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/data/models/portfolio.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/presentation/widgets/portfolio/project/project_portions_web_widget.dart';
+import 'package:site/features/site/presentation/widgets/portfolio/project/project_portions_widget.dart';
 import 'package:site/features/site/utils/consts.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectPage extends StatelessWidget {
   static const id = 'ProjectPage';
@@ -62,112 +62,10 @@ class ProjectPage extends StatelessWidget {
                 style: context.normalStyle,
               ),
               const SizedBox(height: 10),
-              showPortions(context),
+              ProjectPortionsWidget(portions: _project.portions)
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget showPortions(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      primary: false,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        var portion = _project.portions[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (_project.portions.length > 1)
-              Text(
-                portion.title,
-                textAlign: TextAlign.start,
-                style: context.headerStyle,
-              ),
-            const SizedBox(height: 10),
-            Text(
-              portion.description,
-              textAlign: TextAlign.start,
-              style: context.normalStyle,
-            ),
-            const SizedBox(height: 10),
-            if (portion.pictures.isNotEmpty) showGallery(context, index),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                if (portion.link.isNotEmpty)
-                  TextButton(
-                    onPressed: () async =>
-                        await launchUrl(Uri.parse(portion.link), mode: LaunchMode.externalApplication),
-                    child: Text(AppLocalizations.of(context)!.reviewApp,
-                        style: context.normalStyle),
-                  ),
-                if (portion.source.isNotEmpty)
-                  TextButton(
-                    onPressed: () async =>
-                        await launchUrl(Uri.parse(portion.source), mode: LaunchMode.externalApplication),
-                    child: Text(
-                      AppLocalizations.of(context)!.reviewSource,
-                      style: context.normalStyle,
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            if (index != _project.portions.length - 1)
-              Column(
-                children: const [
-                  Divider(
-                    thickness: 1,
-                  ),
-                ],
-              ),
-          ],
-        );
-      },
-      itemCount: _project.portions.length,
-    );
-  }
-
-  Widget showGallery(BuildContext context, int portionIndex) {
-    var portion = _project.portions[portionIndex];
-    return SizedBox(
-      height: context.height / 3,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {
-                showDialog(
-                    barrierColor: Colors.transparent,
-                    context: context,
-                    builder: (context) {
-                      return Dialog(
-                        backgroundColor: Colors.transparent,
-                        child: SafeArea(
-                            child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(portion.pictures[index],
-                              fit: BoxFit.cover),
-                        )),
-                      );
-                    });
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child:
-                    Image.network(portion.pictures[index], fit: BoxFit.cover),
-              ),
-            ),
-          );
-        },
-        itemCount: portion.pictures.length,
       ),
     );
   }
@@ -176,105 +74,30 @@ class ProjectPage extends StatelessWidget {
     BuildContext context,
     EdgeInsets padding,
   ) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: padding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(_project.description,
-                textAlign: TextAlign.start, style: context.normalStyle),
-            Column(children: const [
-              SizedBox(height: 10),
-              Divider(thickness: 1),
-              SizedBox(height: 10)
-            ]),
-            showPortionsForWeb(context)
-          ],
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (overscroll) {
+        overscroll.disallowIndicator();
+        return true;
+      },
+      child: SingleChildScrollView(
+        primary: true,
+        child: Padding(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(_project.description,
+                  textAlign: TextAlign.start, style: context.normalStyle),
+              Column(children: const [
+                SizedBox(height: 5),
+                Divider(thickness: 1),
+                SizedBox(height: 5)
+              ]),
+              ProjectPortionsWebWidget(portions: _project.portions)
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget showPortionsForWeb(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        var portion = _project.portions[index];
-        return Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  flex: 9,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (_project.portions.length > 1)
-                        Text(
-                          portion.title,
-                          textAlign: TextAlign.start,
-                          style: context.headerStyle,
-                        ),
-                      const SizedBox(height: 10),
-                      Text(portion.description,
-                          textAlign: TextAlign.start,
-                          style: context.normalStyle),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          if (portion.link.isNotEmpty)
-                            TextButton(
-                              onPressed: () async =>
-                                  await launchUrl(Uri.parse(portion.link), mode: LaunchMode.externalApplication),
-                              child: Text(
-                                AppLocalizations.of(context)!.reviewApp,
-                                style: context.normalStyle,
-                              ),
-                            ),
-                          const SizedBox(height: 10),
-                          if (portion.source.isNotEmpty)
-                            TextButton(
-                              onPressed: () async =>
-                                  await launchUrl(Uri.parse(portion.source), mode: LaunchMode.externalApplication),
-                              child: Text(
-                                  AppLocalizations.of(context)!.reviewSource,
-                                  style: context.normalStyle),
-                            ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  flex: 10,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (portion.pictures.isNotEmpty)
-                        showGallery(context, index),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            if (index != _project.portions.length - 1)
-              Column(
-                children: const [
-                  Divider(
-                    thickness: 1,
-                  ),
-                  SizedBox(height: 10),
-                ],
-              ),
-          ],
-        );
-      },
-      itemCount: _project.portions.length,
     );
   }
 }

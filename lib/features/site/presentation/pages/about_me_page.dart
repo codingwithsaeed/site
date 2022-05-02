@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:site/features/site/domain/entities/user.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
 import 'package:site/features/site/utils/consts.dart';
 
 class AboutMePage extends StatelessWidget {
@@ -16,7 +17,10 @@ class AboutMePage extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(AppLocalizations.of(context)!.about, style: context.headerStyle,),
+        title: Text(
+          AppLocalizations.of(context)!.about,
+          style: context.headerStyle,
+        ),
         shape: roundedRectangleBorder,
       ),
       body: mainBody(context),
@@ -64,20 +68,18 @@ class AboutMePage extends StatelessWidget {
       );
 
   Widget showImageAndTitle(BuildContext context) {
-    ImageProvider imageProvider;
+    late String source;
     if (user.person.pictures.isNotEmpty) {
-      imageProvider = NetworkImage(user.person.pictures.length >= 2
+      source = user.person.pictures.length >= 2
           ? user.person.pictures[1]
-          : user.person.pictures.first);
-    } else {
-      imageProvider = const AssetImage('assets/images/pic.jpg');
+          : user.person.pictures.first;
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CircleAvatar(
-          backgroundImage: imageProvider,
+        CircleNetworkImage(
+          source: source,
           radius: context.isMobile
               ? 90
               : context.isTablet

@@ -167,7 +167,7 @@ class ResumePage extends StatelessWidget {
         ),
         ListTile(
           title: Text(user.resume.contact.address, style: context.normalStyle),
-          leading: const Icon(Icons.home_filled),
+          leading: const Icon(Icons.location_on),
         ),
         const SizedBox(height: 10),
       ],

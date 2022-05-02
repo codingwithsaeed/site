@@ -8,7 +8,7 @@ import 'package:site/core/error/exception.dart';
 const _localUrl = 'http://192.168.1.2/site/webservice.php';
 // ignore: unused_element
 const _onlineUrl = 'https://codingwithsaeed.ir/api/site/webservice.php';
-final currentDataUrl = Uri.parse(_localUrl);
+final currentDataUrl = Uri.parse(_onlineUrl);
 
 abstract class ApiProvider {
   ///Performs a POST request to given url

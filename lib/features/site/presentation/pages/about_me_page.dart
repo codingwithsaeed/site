@@ -16,7 +16,7 @@ class AboutMePage extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(AppLocalizations.of(context)!.about),
+        title: Text(AppLocalizations.of(context)!.about, style: context.headerStyle,),
         shape: roundedRectangleBorder,
       ),
       body: mainBody(context),

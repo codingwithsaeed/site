@@ -21,7 +21,7 @@ class ResumePage extends StatelessWidget {
         backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)!.resume),
+          title: Text(AppLocalizations.of(context)!.resume, style: context.headerStyle),
           shape: roundedRectangleBorder,
         ),
         body: Responsive(
@@ -114,7 +114,7 @@ class ResumePage extends StatelessWidget {
                 ),
               ],
               fontWeight: FontWeight.w700,
-              color: const Color.fromARGB(255, 42, 2, 49),
+              color: primaryColor,
             )),
         const SizedBox(height: 5),
         Text(user.person.title,

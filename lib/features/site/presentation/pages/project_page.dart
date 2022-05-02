@@ -101,17 +101,17 @@ class ProjectPage extends StatelessWidget {
                 if (portion.link.isNotEmpty)
                   TextButton(
                     onPressed: () async =>
-                        await launchUrl(Uri.parse(portion.link)),
+                        await launchUrl(Uri.parse(portion.link), mode: LaunchMode.externalApplication),
                     child: Text(AppLocalizations.of(context)!.reviewApp,
                         style: context.normalStyle),
                   ),
                 if (portion.source.isNotEmpty)
                   TextButton(
                     onPressed: () async =>
-                        await launchUrl(Uri.parse(portion.source)),
+                        await launchUrl(Uri.parse(portion.source), mode: LaunchMode.externalApplication),
                     child: Text(
                       AppLocalizations.of(context)!.reviewSource,
-                      style: context.normalStyle.copyWith(color: primaryColor),
+                      style: context.normalStyle,
                     ),
                   ),
               ],
@@ -227,7 +227,7 @@ class ProjectPage extends StatelessWidget {
                           if (portion.link.isNotEmpty)
                             TextButton(
                               onPressed: () async =>
-                                  await launchUrl(Uri.parse(portion.link)),
+                                  await launchUrl(Uri.parse(portion.link), mode: LaunchMode.externalApplication),
                               child: Text(
                                 AppLocalizations.of(context)!.reviewApp,
                                 style: context.normalStyle,
@@ -237,7 +237,7 @@ class ProjectPage extends StatelessWidget {
                           if (portion.source.isNotEmpty)
                             TextButton(
                               onPressed: () async =>
-                                  await launchUrl(Uri.parse(portion.source)),
+                                  await launchUrl(Uri.parse(portion.source), mode: LaunchMode.externalApplication),
                               child: Text(
                                   AppLocalizations.of(context)!.reviewSource,
                                   style: context.normalStyle),

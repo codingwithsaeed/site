@@ -19,7 +19,7 @@ class PortfolioPage extends StatelessWidget {
         backgroundColor: backgroundColor,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(AppLocalizations.of(context)!.portfolio),
+          title: Text(AppLocalizations.of(context)!.portfolio, style: context.headerStyle),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(30),
@@ -117,7 +117,7 @@ class PortfolioPage extends StatelessWidget {
                 ),
               ],
               fontWeight: FontWeight.w700,
-              color: const Color.fromARGB(255, 42, 2, 49),
+              color: primaryColor,
             )),
         const SizedBox(height: 10),
         Text(user.person.title,

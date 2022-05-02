@@ -27,6 +27,8 @@ class SkillWidget extends StatelessWidget {
           child: SizedBox(
             child: ListView.builder(
               shrinkWrap: true,
+              primary: false,
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 var skill = skills[index];
                 return Column(

@@ -44,20 +44,27 @@ class ProjectPage extends StatelessWidget {
   }
 
   Widget onMobile(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(MediaQuery.of(context).size.width / 35),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              _project.description,
-              textAlign: TextAlign.start,
-              style: context.normalStyle,
-            ),
-            const SizedBox(height: 10),
-            showPortions(context),
-          ],
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (overscroll) {
+        overscroll.disallowIndicator();
+        return true;
+      },
+      child: SingleChildScrollView(
+        primary: true,
+        child: Padding(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width / 35),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                _project.description,
+                textAlign: TextAlign.start,
+                style: context.normalStyle,
+              ),
+              const SizedBox(height: 10),
+              showPortions(context),
+            ],
+          ),
         ),
       ),
     );
@@ -66,6 +73,8 @@ class ProjectPage extends StatelessWidget {
   Widget showPortions(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var portion = _project.portions[index];
         return Column(
@@ -102,7 +111,7 @@ class ProjectPage extends StatelessWidget {
                         await launchUrl(Uri.parse(portion.source)),
                     child: Text(
                       AppLocalizations.of(context)!.reviewSource,
-                      style: context.normalStyle,
+                      style: context.normalStyle.copyWith(color: primaryColor),
                     ),
                   ),
               ],

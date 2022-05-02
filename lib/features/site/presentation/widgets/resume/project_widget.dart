@@ -15,6 +15,8 @@ class ProjectWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var project = list[index];
         return Column(
@@ -22,7 +24,8 @@ class ProjectWidget extends StatelessWidget {
             ListTile(
               onTap: () async {
                 if (project.link.isNotEmpty) {
-                  await launchUrl(Uri.parse(project.link));
+                  await launchUrl(Uri.parse(project.link),
+                      mode: LaunchMode.externalApplication);
                 }
               },
               title: Text(project.name, style: context.normalStyle),

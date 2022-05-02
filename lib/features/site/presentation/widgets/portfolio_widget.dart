@@ -13,25 +13,27 @@ class PortfolioWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var portfolio = list[index];
         return Column(
           children: [
-            if (index == 0) const SizedBox(height: 10),
+            if (index == 0) const SizedBox(height: 5),
             ListTile(
               onTap: () => onTap(index),
               title: Text(portfolio.title, style: context.normalStyle),
               subtitle: Text(portfolio.subtitle, style: context.smallStyle),
               leading: const Icon(Icons.extension),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
             if (index != list.length - 1)
               Column(
                 children: const [
                   Divider(
                     thickness: 1,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 5),
                 ],
               ),
           ],

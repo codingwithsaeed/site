@@ -151,7 +151,8 @@ class HomePage extends StatelessWidget {
               height: 48,
               child: IconButton(
                   onPressed: () async => await launchUrl(
-                      Uri.parse(user.resume.socialNetworks[index].link)),
+                      Uri.parse(user.resume.socialNetworks[index].link),
+                      mode: LaunchMode.externalApplication),
                   icon: Image.network(user.resume.socialNetworks[index].logo)),
             );
           },

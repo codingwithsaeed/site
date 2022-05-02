@@ -50,28 +50,35 @@ class ResumePage extends StatelessWidget {
   }
 
   Widget onMobileOrTablet(BuildContext context, EdgeInsets padding) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: padding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 10),
-            if (!context.isDesktop) showImageAndTitle(context),
-            const SizedBox(height: 10),
-            showAbout(context),
-            const SizedBox(height: 10),
-            showContact(context),
-            const SizedBox(height: 10),
-            showSkills(context),
-            const SizedBox(height: 10),
-            showEducation(context),
-            const SizedBox(height: 10),
-            showCompanies(context),
-            const SizedBox(height: 10),
-            showProjects(context),
-            const SizedBox(height: 10),
-          ],
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (OverscrollIndicatorNotification overscroll) {
+        overscroll.disallowIndicator();
+        return true;
+      },
+      child: SingleChildScrollView(
+        primary: true,
+        child: Padding(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 10),
+              if (!context.isDesktop) showImageAndTitle(context),
+              const SizedBox(height: 10),
+              showAbout(context),
+              const SizedBox(height: 10),
+              showContact(context),
+              const SizedBox(height: 10),
+              showSkills(context),
+              const SizedBox(height: 10),
+              showEducation(context),
+              const SizedBox(height: 10),
+              showCompanies(context),
+              const SizedBox(height: 10),
+              showProjects(context),
+              const SizedBox(height: 10),
+            ],
+          ),
         ),
       ),
     );

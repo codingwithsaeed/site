@@ -62,19 +62,26 @@ class PortfolioPage extends StatelessWidget {
   }
 
   Widget onMobileOrTablet(BuildContext context, EdgeInsets padding) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: padding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 10),
-            if (!context.isDesktop) showImageAndTitle(context),
-            const SizedBox(height: 10),
-            showAndroidPortfolio(context),
-            const SizedBox(height: 10),
-            showFlutterPortfolio(context),
-          ],
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (overscroll) {
+        overscroll.disallowIndicator();
+        return true;
+      },
+      child: SingleChildScrollView(
+        primary: true,
+        child: Padding(
+          padding: padding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 10),
+              if (!context.isDesktop) showImageAndTitle(context),
+              const SizedBox(height: 10),
+              showAndroidPortfolio(context),
+              const SizedBox(height: 10),
+              showFlutterPortfolio(context),
+            ],
+          ),
         ),
       ),
     );

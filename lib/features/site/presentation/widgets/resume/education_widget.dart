@@ -15,6 +15,8 @@ class EducationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var edu = list[index];
         return Column(
@@ -22,7 +24,8 @@ class EducationWidget extends StatelessWidget {
             ListTile(
               onTap: () async {
                 if (edu.universityWebsite.isNotEmpty) {
-                  await launchUrl(Uri.parse(edu.universityWebsite));
+                  await launchUrl(Uri.parse(edu.universityWebsite),
+                      mode: LaunchMode.externalApplication);
                 }
               },
               title:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:site/features/site/data/models/company.dart';
+import 'package:site/features/site/presentation/l10n/l10n.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,6 +16,8 @@ class CompanyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var work = list[index];
         return Column(
@@ -22,7 +25,8 @@ class CompanyWidget extends StatelessWidget {
             ListTile(
               onTap: () async {
                 if (work.website.isNotEmpty) {
-                  await launchUrl(Uri.parse(work.website));
+                  await launchUrl(Uri.parse(work.website),
+                      mode: LaunchMode.externalApplication);
                 }
               },
               title: Text(work.title, style: context.normalStyle),

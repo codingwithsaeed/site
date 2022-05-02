@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:site/features/site/presentation/pages/responsive.dart';
+import 'package:site/features/site/utils/consts.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
@@ -13,7 +14,7 @@ class SectionHeader extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: const Color.fromARGB(255, 42, 2, 49),
+        color: primaryColor,
       ),
       width: double.infinity,
       padding: const EdgeInsets.all(8.0),

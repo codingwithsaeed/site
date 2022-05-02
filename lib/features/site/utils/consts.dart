@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 const backgroundColor = Color.fromARGB(255, 232, 224, 234);
-const primaryColor = Color.fromARGB(255, 22, 5, 43);
+const primaryColor = Color.fromARGB(255, 31, 1, 36);
 
 const faGradientBox = BoxDecoration(
   gradient: LinearGradient(
@@ -38,3 +41,19 @@ const roundedRectangleBorder = RoundedRectangleBorder(
   borderRadius: BorderRadius.only(
       bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
 );
+
+final scrollBehavior = const MaterialScrollBehavior().copyWith(
+  dragDevices: {
+    PointerDeviceKind.mouse,
+    PointerDeviceKind.stylus,
+    PointerDeviceKind.touch,
+    PointerDeviceKind.unknown
+  },
+);
+
+const localizationsDelegates = [
+  AppLocalizations.delegate,
+  GlobalMaterialLocalizations.delegate,
+  GlobalWidgetsLocalizations.delegate,
+  GlobalCupertinoLocalizations.delegate,
+];

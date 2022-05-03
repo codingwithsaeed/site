@@ -17,6 +17,8 @@ class ProjectPortionsWebWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         var portion = portions[index];
         return Column(

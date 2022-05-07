@@ -29,7 +29,7 @@ class EducationWidget extends StatelessWidget {
                 }
               },
               title:
-              Text('${edu.grade} ${edu.field}', style: context.normalStyle),
+                  Text('${edu.grade} ${edu.field}', style: context.normalStyle),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

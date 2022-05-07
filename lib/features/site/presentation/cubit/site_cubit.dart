@@ -7,7 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'site_cubit.freezed.dart';
-
 part 'site_state.dart';
 
 @injectable

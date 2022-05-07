@@ -37,7 +37,7 @@ class ProjectPage extends StatelessWidget {
       tablet: context.width < 700
           ? onMobile(context)
           : onDesktopOrTablet(
-          context, EdgeInsets.all(MediaQuery.of(context).size.width / 45)),
+              context, EdgeInsets.all(MediaQuery.of(context).size.width / 45)),
       desktop: onDesktopOrTablet(
           context, EdgeInsets.all(MediaQuery.of(context).size.width / 35)),
     );
@@ -70,8 +70,10 @@ class ProjectPage extends StatelessWidget {
     );
   }
 
-  Widget onDesktopOrTablet(BuildContext context,
-      EdgeInsets padding,) {
+  Widget onDesktopOrTablet(
+    BuildContext context,
+    EdgeInsets padding,
+  ) {
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overscroll) {
         overscroll.disallowIndicator();

@@ -30,9 +30,9 @@ class PortionPicturesWidget extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         child: SafeArea(
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: LoadingImage(image: pictures[index]),
-                            )),
+                          borderRadius: BorderRadius.circular(15),
+                          child: LoadingImage(image: pictures[index]),
+                        )),
                       );
                     });
               },

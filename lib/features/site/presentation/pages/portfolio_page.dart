@@ -99,7 +99,7 @@ class PortfolioPage extends StatelessWidget {
 
     return Column(
       mainAxisAlignment:
-      context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+          context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleNetworkImage(
@@ -126,8 +126,8 @@ class PortfolioPage extends StatelessWidget {
               fontSize: context.isDesktop
                   ? 30
                   : context.isTablet
-                  ? 18
-                  : 20,
+                      ? 18
+                      : 20,
               shadows: const [
                 Shadow(
                   blurRadius: 10,

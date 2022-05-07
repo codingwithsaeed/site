@@ -25,11 +25,8 @@ class ProjectPortionsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if (portions.length > 1)
-              Text(
-                portion.title,
-                textAlign: TextAlign.start,
-                style: context.headerStyle,
-              ),
+              Text(portion.title,
+                  textAlign: TextAlign.start, style: context.headerStyle),
             const SizedBox(height: 10),
             Text(
               portion.description,

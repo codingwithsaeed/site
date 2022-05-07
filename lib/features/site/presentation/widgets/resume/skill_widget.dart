@@ -49,6 +49,7 @@ class SkillWidget extends StatelessWidget {
                           flex: 3,
                           child: RatingBarIndicator(
                             itemSize: 20,
+                            physics: const NeverScrollableScrollPhysics(),
                             direction: Axis.horizontal,
                             rating: double.parse(skill.level),
                             itemBuilder: ((context, index) {

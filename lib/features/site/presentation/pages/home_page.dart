@@ -192,14 +192,14 @@ class HomePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleNetworkImage(
-          source: user.person.pictures.first,
-          radius: context.isMobile
-              ? 90
-              : context.isTablet
-                  ? 120
-                  : 140,
-        ),
-        const SizedBox(height: 5),
+            animated: true,
+            source: user.person.pictures.first,
+            radius: context.isMobile
+                ? 90
+                : context.isTablet
+                    ? 120
+                    : 140),
+        const SizedBox(height: 15),
         Text(user.person.name,
             style: TextStyle(
               fontSize: context.isMobile

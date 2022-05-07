@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:codingwithsaeed/core/network/api_provider.dart';
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
 import 'package:injectable/injectable.dart';
-import 'package:site/core/network/api_provider.dart';
-import 'package:site/features/site/domain/entities/user.dart';
 
 abstract class UserRemoteSource {
   Future<User> getUserInfo(Map<String, dynamic> params);
@@ -11,6 +11,7 @@ abstract class UserRemoteSource {
 @Injectable(as: UserRemoteSource)
 class UserRemoteSourceImpl implements UserRemoteSource {
   final ApiProvider _provider;
+
   const UserRemoteSourceImpl(this._provider);
 
   @override

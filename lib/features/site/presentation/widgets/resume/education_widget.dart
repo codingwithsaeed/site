@@ -1,6 +1,6 @@
+import 'package:codingwithsaeed/features/site/data/models/education.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/data/models/education.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class EducationWidget extends StatelessWidget {
@@ -29,7 +29,7 @@ class EducationWidget extends StatelessWidget {
                 }
               },
               title:
-                  Text('${edu.grade} ${edu.field}', style: context.normalStyle),
+              Text('${edu.grade} ${edu.field}', style: context.normalStyle),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

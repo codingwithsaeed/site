@@ -1,6 +1,6 @@
+import 'package:codingwithsaeed/features/site/data/models/project.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/data/models/project.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectWidget extends StatelessWidget {

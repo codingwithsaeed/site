@@ -1,17 +1,17 @@
+import 'package:codingwithsaeed/di/injection.dart';
+import 'package:codingwithsaeed/features/site/data/models/portfolio.dart';
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/presentation/l10n/l10n.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/about_me_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/home_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/portfolio_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/project_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/resume_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/provider/local_provider.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
+import 'package:codingwithsaeed/features/site/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:site/di/injection.dart';
-import 'package:site/features/site/data/models/portfolio.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/presentation/l10n/l10n.dart';
-import 'package:site/features/site/presentation/pages/about_me_page.dart';
-import 'package:site/features/site/presentation/pages/home_page.dart';
-import 'package:site/features/site/presentation/pages/portfolio_page.dart';
-import 'package:site/features/site/presentation/pages/project_page.dart';
-import 'package:site/features/site/presentation/pages/resume_page.dart';
-import 'package:site/features/site/presentation/provider/local_provider.dart';
-import 'package:site/features/site/utils/consts.dart';
-import 'package:site/features/site/utils/utils.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

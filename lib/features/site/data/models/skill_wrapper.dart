@@ -1,5 +1,5 @@
+import 'package:codingwithsaeed/features/site/data/models/skill.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:site/features/site/data/models/skill.dart';
 
 part 'skill_wrapper.freezed.dart';
 part 'skill_wrapper.g.dart';
@@ -12,5 +12,6 @@ class SkillWrapper with _$SkillWrapper {
     List<Skill> prog,
   ) = _SkillWrapper;
 
-  factory SkillWrapper.fromJson(Map<String, dynamic> json) => _$SkillWrapperFromJson(json);
+  factory SkillWrapper.fromJson(Map<String, dynamic> json) =>
+      _$SkillWrapperFromJson(json);
 }

@@ -1,8 +1,8 @@
+import 'package:codingwithsaeed/features/site/data/models/portfolio_portion.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/portfolio/project/portion_pictures_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:site/features/site/data/models/portfolio_portion.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/portfolio/project/portion_pictures_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProjectPortionsWidget extends StatelessWidget {

@@ -1,9 +1,9 @@
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/circle_network_image.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class AboutMePage extends StatelessWidget {
   static const id = 'AboutMePage';
@@ -36,36 +36,36 @@ class AboutMePage extends StatelessWidget {
   }
 
   Widget onMobile(BuildContext context) => Container(
-        padding: EdgeInsets.symmetric(
-            horizontal: context.width <= 600
-                ? (context.width / 20)
-                : (context.width / 15),
-            vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Spacer(),
-            if (context.width <= 600) showImageAndTitle(context),
-            Text(user.person.about, style: context.normalStyle),
-            const Spacer(),
-          ],
-        ),
-      );
+    padding: EdgeInsets.symmetric(
+        horizontal: context.width <= 600
+            ? (context.width / 20)
+            : (context.width / 15),
+        vertical: 8),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Spacer(),
+        if (context.width <= 600) showImageAndTitle(context),
+        Text(user.person.about, style: context.normalStyle),
+        const Spacer(),
+      ],
+    ),
+  );
 
   Widget onDesktop(BuildContext context) => Row(
-        children: [
-          Expanded(
-              flex: 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  showImageAndTitle(context),
-                ],
-              )),
-          Expanded(flex: context.isTablet ? 5 : 4, child: onMobile(context))
-        ],
-      );
+    children: [
+      Expanded(
+          flex: 5,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              showImageAndTitle(context),
+            ],
+          )),
+      Expanded(flex: context.isTablet ? 5 : 4, child: onMobile(context))
+    ],
+  );
 
   Widget showImageAndTitle(BuildContext context) {
     late String source;
@@ -83,8 +83,8 @@ class AboutMePage extends StatelessWidget {
           radius: context.isMobile
               ? 90
               : context.isTablet
-                  ? 120
-                  : 140,
+              ? 120
+              : 140,
         ),
         const SizedBox(height: 5),
         Text(user.person.name,
@@ -92,8 +92,8 @@ class AboutMePage extends StatelessWidget {
               fontSize: context.isMobile
                   ? 24
                   : context.isTablet
-                      ? 36
-                      : 40,
+                  ? 36
+                  : 40,
               shadows: const [
                 Shadow(
                   blurRadius: 5,
@@ -110,8 +110,8 @@ class AboutMePage extends StatelessWidget {
               fontSize: context.isMobile
                   ? 20
                   : context.isTablet
-                      ? 25
-                      : 30,
+                  ? 25
+                  : 30,
               shadows: const [
                 Shadow(
                   blurRadius: 10,

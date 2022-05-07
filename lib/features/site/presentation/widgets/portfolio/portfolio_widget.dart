@@ -1,6 +1,6 @@
+import 'package:codingwithsaeed/features/site/data/models/portfolio.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/data/models/portfolio.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
 
 class PortfolioWidget extends StatelessWidget {
   const PortfolioWidget({Key? key, required this.list, required this.onTap})

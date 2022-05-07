@@ -1,7 +1,7 @@
+import 'package:codingwithsaeed/features/site/data/models/galley_model.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:site/features/site/data/models/galley_model.dart';
 
 class GalleryPage extends StatefulWidget {
   static const id = 'GalleryPage';

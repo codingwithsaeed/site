@@ -1,6 +1,6 @@
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/loading_image.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/home/loading_image.dart';
 
 class PortionPicturesWidget extends StatelessWidget {
   const PortionPicturesWidget({
@@ -30,9 +30,9 @@ class PortionPicturesWidget extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         child: SafeArea(
                             child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: LoadingImage(image: pictures[index]),
-                        )),
+                              borderRadius: BorderRadius.circular(15),
+                              child: LoadingImage(image: pictures[index]),
+                            )),
                       );
                     });
               },

@@ -1,5 +1,5 @@
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class LoadingImage extends StatelessWidget {
   const LoadingImage({
@@ -22,7 +22,7 @@ class LoadingImage extends StatelessWidget {
             color: primaryColor,
             value: loadingProgress.expectedTotalBytes != null
                 ? loadingProgress.cumulativeBytesLoaded /
-                    loadingProgress.expectedTotalBytes!
+                loadingProgress.expectedTotalBytes!
                 : null,
           ),
         );

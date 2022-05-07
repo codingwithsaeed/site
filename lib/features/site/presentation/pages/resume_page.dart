@@ -1,14 +1,14 @@
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/circle_network_image.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/resume/company_widget.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/resume/education_widget.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/resume/project_widget.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/resume/section_header.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/resume/skill_widget.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
-import 'package:site/features/site/presentation/widgets/resume/company_widget.dart';
-import 'package:site/features/site/presentation/widgets/resume/education_widget.dart';
-import 'package:site/features/site/presentation/widgets/resume/project_widget.dart';
-import 'package:site/features/site/presentation/widgets/resume/section_header.dart';
-import 'package:site/features/site/presentation/widgets/resume/skill_widget.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class ResumePage extends StatelessWidget {
   static const id = 'ResumePage';
@@ -96,7 +96,7 @@ class ResumePage extends StatelessWidget {
 
     return Column(
       mainAxisAlignment:
-          context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+      context.isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CircleNetworkImage(
@@ -123,8 +123,8 @@ class ResumePage extends StatelessWidget {
               fontSize: context.isDesktop
                   ? 30
                   : context.isTablet
-                      ? 18
-                      : 20,
+                  ? 18
+                  : 20,
               shadows: const [
                 Shadow(
                   blurRadius: 10,
@@ -139,18 +139,18 @@ class ResumePage extends StatelessWidget {
   }
 
   Widget showAbout(BuildContext context) => Column(
-        children: [
-          SectionHeader(title: AppLocalizations.of(context)!.profile),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              user.resume.profile.about,
-              style: context.normalStyle,
-            ),
-          ),
-        ],
-      );
+    children: [
+      SectionHeader(title: AppLocalizations.of(context)!.profile),
+      const SizedBox(height: 5),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          user.resume.profile.about,
+          style: context.normalStyle,
+        ),
+      ),
+    ],
+  );
 
   Widget showContact(BuildContext context) {
     return Column(

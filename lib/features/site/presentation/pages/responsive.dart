@@ -1,7 +1,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class Responsive extends StatelessWidget {
   final Widget mobile;

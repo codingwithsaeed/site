@@ -1,14 +1,14 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
-import 'package:injectable/injectable.dart';
-import 'package:site/core/error/exception.dart';
-import 'package:site/core/error/failure.dart';
+import 'package:codingwithsaeed/core/error/exception.dart';
+import 'package:codingwithsaeed/core/error/failure.dart';
+import 'package:codingwithsaeed/core/network/api_param.dart';
+import 'package:codingwithsaeed/core/network/network_info.dart';
+import 'package:codingwithsaeed/features/site/data/datasources/user_remote_source.dart';
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/domain/repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:site/core/network/api_param.dart';
-import 'package:site/core/network/network_info.dart';
-import 'package:site/features/site/data/datasources/user_remote_source.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/domain/repositories/user_repository.dart';
+import 'package:injectable/injectable.dart';
 
 @Injectable(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {

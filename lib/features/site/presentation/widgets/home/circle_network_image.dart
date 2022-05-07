@@ -1,7 +1,7 @@
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/loading_image.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/ripple_animation.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/presentation/widgets/home/loading_image.dart';
-import 'package:site/features/site/presentation/widgets/home/ripple_animation.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class CircleNetworkImage extends StatefulWidget {
   const CircleNetworkImage({

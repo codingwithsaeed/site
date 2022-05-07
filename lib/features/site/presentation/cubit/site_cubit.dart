@@ -1,17 +1,19 @@
 import 'package:bloc/bloc.dart';
+import 'package:codingwithsaeed/core/error/failure.dart';
+import 'package:codingwithsaeed/core/network/api_param.dart';
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/domain/usecases/get_info_usecase.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:site/core/error/failure.dart';
-import 'package:site/core/network/api_param.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/domain/usecases/get_info_usecase.dart';
+
+part 'site_cubit.freezed.dart';
 
 part 'site_state.dart';
-part 'site_cubit.freezed.dart';
 
 @injectable
 class SiteCubit extends Cubit<SiteState> {
   final GetInfoUsecase _getInfoUsecase;
+
   SiteCubit(this._getInfoUsecase) : super(const SiteState.initial());
 
   Future<void> getUserInfo(String locale) async {

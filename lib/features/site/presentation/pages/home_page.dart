@@ -1,23 +1,23 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 import 'dart:developer';
 
+import 'package:codingwithsaeed/di/injection.dart';
+import 'package:codingwithsaeed/features/site/domain/entities/user.dart';
+import 'package:codingwithsaeed/features/site/presentation/cubit/site_cubit.dart';
+import 'package:codingwithsaeed/features/site/presentation/l10n/l10n.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/about_me_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/portfolio_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/resume_page.dart';
+import 'package:codingwithsaeed/features/site/presentation/provider/local_provider.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/circle_network_image.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/flag_button.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/home/menu_item.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:site/di/injection.dart';
-import 'package:site/features/site/domain/entities/user.dart';
-import 'package:site/features/site/presentation/cubit/site_cubit.dart';
-import 'package:site/features/site/presentation/l10n/l10n.dart';
-import 'package:site/features/site/presentation/pages/about_me_page.dart';
-import 'package:site/features/site/presentation/pages/portfolio_page.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/pages/resume_page.dart';
-import 'package:site/features/site/presentation/provider/local_provider.dart';
-import 'package:site/features/site/presentation/widgets/home/circle_network_image.dart';
-import 'package:site/features/site/presentation/widgets/home/flag_button.dart';
-import 'package:site/features/site/presentation/widgets/home/menu_item.dart';
-import 'package:site/features/site/utils/consts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {

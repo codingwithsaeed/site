@@ -1,9 +1,10 @@
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class SectionHeader extends StatelessWidget {
   final String title;
+
   const SectionHeader({
     Key? key,
     required this.title,

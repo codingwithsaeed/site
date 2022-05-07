@@ -1,7 +1,6 @@
+import 'package:codingwithsaeed/features/site/data/models/company.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/data/models/company.dart';
-import 'package:site/features/site/presentation/l10n/l10n.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CompanyWidget extends StatelessWidget {

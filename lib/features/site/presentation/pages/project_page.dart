@@ -1,9 +1,9 @@
+import 'package:codingwithsaeed/features/site/data/models/portfolio.dart';
+import 'package:codingwithsaeed/features/site/presentation/pages/responsive.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/portfolio/project/project_portions_web_widget.dart';
+import 'package:codingwithsaeed/features/site/presentation/widgets/portfolio/project/project_portions_widget.dart';
+import 'package:codingwithsaeed/features/site/utils/consts.dart';
 import 'package:flutter/material.dart';
-import 'package:site/features/site/data/models/portfolio.dart';
-import 'package:site/features/site/presentation/pages/responsive.dart';
-import 'package:site/features/site/presentation/widgets/portfolio/project/project_portions_web_widget.dart';
-import 'package:site/features/site/presentation/widgets/portfolio/project/project_portions_widget.dart';
-import 'package:site/features/site/utils/consts.dart';
 
 class ProjectPage extends StatelessWidget {
   static const id = 'ProjectPage';
@@ -37,7 +37,7 @@ class ProjectPage extends StatelessWidget {
       tablet: context.width < 700
           ? onMobile(context)
           : onDesktopOrTablet(
-              context, EdgeInsets.all(MediaQuery.of(context).size.width / 45)),
+          context, EdgeInsets.all(MediaQuery.of(context).size.width / 45)),
       desktop: onDesktopOrTablet(
           context, EdgeInsets.all(MediaQuery.of(context).size.width / 35)),
     );
@@ -70,10 +70,8 @@ class ProjectPage extends StatelessWidget {
     );
   }
 
-  Widget onDesktopOrTablet(
-    BuildContext context,
-    EdgeInsets padding,
-  ) {
+  Widget onDesktopOrTablet(BuildContext context,
+      EdgeInsets padding,) {
     return NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overscroll) {
         overscroll.disallowIndicator();

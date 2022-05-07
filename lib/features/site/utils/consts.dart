@@ -63,3 +63,5 @@ const loading = Center(
     color: primaryColor,
   ),
 );
+
+const transitionDuration = Duration(seconds: 1);

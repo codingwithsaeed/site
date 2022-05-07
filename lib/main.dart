@@ -28,53 +28,60 @@ class MyApp extends StatelessWidget {
       create: (_) => LocalProvider(L10n.all.first),
       builder: (context, child) {
         return MaterialApp(
-          title: 'Saeed Ahmadi',
-          localizationsDelegates: localizationsDelegates, 
-          supportedLocales: L10n.all,
-          locale: Provider.of<LocalProvider>(context).locale,
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            primarySwatch: primaryColor.material,
-            fontFamily: 'vazir',
-          ),
-          routes: {
-            HomePage.id: (context) => const HomePage(),
-          },
-          onGenerateRoute: onGenerateRoute,
-          initialRoute: HomePage.id,
-          scrollBehavior: scrollBehavior
-        );
+            title: 'Saeed Ahmadi',
+            localizationsDelegates: localizationsDelegates,
+            supportedLocales: L10n.all,
+            locale: Provider.of<LocalProvider>(context).locale,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: primaryColor.material,
+              fontFamily: 'vazir',
+            ),
+            routes: {
+              HomePage.id: (context) => const HomePage(),
+            },
+            onGenerateRoute: (settings) => onGenerateRoute(context, settings),
+            initialRoute: HomePage.id,
+            scrollBehavior: scrollBehavior);
       },
     );
   }
 
-  MaterialPageRoute? onGenerateRoute(settings) {
+  PageRoute? onGenerateRoute(BuildContext context, RouteSettings settings) {
     switch (settings.name) {
       case AboutMePage.id:
-        return MaterialPageRoute(
-          builder: (context) => AboutMePage(
-            user: settings.arguments as User,
-          ),
-        );
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, anotherAnimation) =>
+                AboutMePage(user: settings.arguments as User),
+            transitionDuration: transitionDuration,
+            transitionsBuilder: transitionBuilder);
+
       case ResumePage.id:
-        return MaterialPageRoute(
-          builder: (context) => ResumePage(
-            user: settings.arguments as User,
-          ),
-        );
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, anotherAnimation) =>
+                ResumePage(user: settings.arguments as User),
+            transitionDuration: transitionDuration,
+            transitionsBuilder: transitionBuilder);
+
       case PortfolioPage.id:
-        return MaterialPageRoute(
-          builder: (context) => PortfolioPage(
-            user: settings.arguments as User,
-          ),
-        );
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, anotherAnimation) =>
+                PortfolioPage(user: settings.arguments as User),
+            transitionDuration: transitionDuration,
+            transitionsBuilder: transitionBuilder);
+
       case ProjectPage.id:
-        return MaterialPageRoute(
-          builder: (context) => ProjectPage(
-            project: settings.arguments as Portfolio,
-          ),
-        );
+        return PageRouteBuilder(
+            pageBuilder: (context, animation, anotherAnimation) =>
+                ProjectPage(project: settings.arguments as Portfolio),
+            transitionDuration: transitionDuration,
+            transitionsBuilder: transitionBuilder);
     }
     return null;
+  }
+
+  Widget transitionBuilder(context, animation, anotherAnimation, child) {
+    animation = CurvedAnimation(curve: Curves.linear, parent: animation);
+    return FadeTransition(opacity: animation, child: child);
   }
 }

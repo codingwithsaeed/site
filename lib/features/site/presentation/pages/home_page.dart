@@ -53,9 +53,32 @@ class HomePage extends StatelessWidget {
                         initial: () => loading,
                         loading: () => loading,
                         loaded: (user) => mainBody(context, user),
-                        error: (error) => Center(
-                              child: Text(error),
-                            ));
+                        error: (error) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  error,
+                                  style: context.headerStyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 10),
+                                MaterialButton(
+                                  onPressed: () {
+                                    context.read<SiteCubit>().getUserInfo(
+                                        context
+                                            .read<LocalProvider>()
+                                            .locale
+                                            .toString());
+                                  },
+                                  child: Text('تلاش مجدد',
+                                      style: context.normalStyle),
+                                )
+                              ],
+                            ),
+                          );
+                        });
                   },
                 ),
               ],

@@ -156,7 +156,7 @@ class ResumePage extends StatelessWidget {
     return Column(
       children: [
         SectionHeader(title: AppLocalizations.of(context)!.contact),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         ListTile(
           title: Text(user.resume.contact.email, style: context.normalStyle),
           leading: const Icon(Icons.email),
@@ -177,7 +177,7 @@ class ResumePage extends StatelessWidget {
           title: Text(user.resume.contact.address, style: context.normalStyle),
           leading: const Icon(Icons.location_on),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
       ],
     );
   }

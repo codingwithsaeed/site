@@ -66,10 +66,8 @@ class SkillWidget extends StatelessWidget {
                     if (index != skills.length - 1)
                       Column(
                         children: const [
-                          Divider(
-                            thickness: 1,
-                          ),
-                          SizedBox(height: 5),
+                          Divider(thickness: 1),
+                          SizedBox(height: 5)
                         ],
                       ),
                   ],
@@ -84,9 +82,8 @@ class SkillWidget extends StatelessWidget {
   }
 
   Color findSkillColor(int level) {
-    if (level <= 2) return Colors.red.shade800;
-    if (level == 3) return Colors.yellow.shade800;
-    if (level == 4) return Colors.green.shade400;
-    return Colors.green.shade800;
+    if (level <= 2) return Colors.red.shade600;
+    if (level == 3) return Colors.yellow.shade700;
+    return Colors.green.shade400;
   }
 }
